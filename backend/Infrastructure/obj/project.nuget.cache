@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "MnPa2uCvFElNSrD98K/cJj3pELdfD4S9YoeG38Uvq1SCsYSyMWJ+Ik7lZl4MasjC7TfpQRQQHEwoOIGtszdfrw==",
+  "success": true,
+  "projectFilePath": "/Users/jannahalka/Desktop/Restaurant_Project/backend/Infrastructure/Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "/Users/jannahalka/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "/Users/jannahalka/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
