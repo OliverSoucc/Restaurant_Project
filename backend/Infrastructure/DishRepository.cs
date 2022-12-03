@@ -5,9 +5,28 @@ namespace Infrastructure;
 
 public class DishRepository: IDishRepository
 {
+    private readonly RestaurantDbContext _context;
+
+    public DishRepository(RestaurantDbContext context)
+    {
+        _context = context;
+    }
+    
     public List<Dish> GetAllDishes()
     {
-        return new List<Dish>()
-            { new() { Id = 1, Price = "Pizza", Description = "This is pizza", WeekDay = DateTime.Now } };
+        return _context.DishTable.ToList();
+    }
+
+    public Dish CreateNewDish(Dish dish)
+    {
+        _context.DishTable.Add(dish);
+        _context.SaveChanges();
+        return dish;
+    }
+
+    public void CreateDb()
+    {
+        _context.Database.EnsureDeleted();
+        _context.Database.EnsureCreated();
     }
 }

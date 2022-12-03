@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "/vwm8S/I0xOec8m8eAKTCI9n5LzylCUQ9qipEFmMhugC8At0PBVAL7yfJgk2qjOyBEqZEpXQEboaoPeZAegAAQ==",
+  "dgSpecHash": "GKqkWlgNZZ6xlVpLbshJsZgNqjHiYklWeRuZU48GOLnA/mjEB7iL7Tph5k/Nv94ZmmGYw+om89weTERuyCJpSQ==",
   "success": true,
   "projectFilePath": "/Users/jannahalka/Desktop/Restaurant_Project/backend/Application/Application.csproj",
   "expectedPackageFiles": [
+    "/Users/jannahalka/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
+    "/Users/jannahalka/.nuget/packages/fluentvalidation/11.4.0/fluentvalidation.11.4.0.nupkg.sha512",
+    "/Users/jannahalka/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/jannahalka/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "/Users/jannahalka/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
   ],
