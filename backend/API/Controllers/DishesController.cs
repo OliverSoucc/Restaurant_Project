@@ -11,10 +11,12 @@ namespace API.Controllers;
 public class DishesController : ControllerBase
 {
     private IDishService _dishService;
+    private PostDishValidator _postDishValidator;
 
-    public DishesController(IDishService dishService)
+    public DishesController(IDishService dishService, PostDishValidator postDishValidator)
     {
         _dishService = dishService;
+        _postDishValidator = postDishValidator;
     }
 
     [HttpGet]
@@ -31,11 +33,14 @@ public class DishesController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Dish> CreateNewDish(PostDishDTO dto)
+    public ActionResult<Dish> CreateNewDish([FromBody]PostDishDTO dto)
     {
         try
         {
-            var result = _dishService.CreateNewDish(dto);
+            var validation = _postDishValidator.Validate(dto);
+            if (!validation.IsValid) throw new ValidationException(validation.ToString());
+                var result = _dishService.CreateNewDish(dto);
+                
             return Created("dishes/" + result.Id, result);
         }
         catch (ValidationException e)

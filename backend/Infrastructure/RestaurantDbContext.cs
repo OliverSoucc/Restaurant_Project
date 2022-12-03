@@ -1,6 +1,5 @@
 using Domain;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure;
 
@@ -14,7 +13,6 @@ public class RestaurantDbContext: DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        
         base.OnConfiguring(optionsBuilder);
         optionsBuilder.UseNpgsql("Host=localhost;Database=restaurant;Username=jannahalka;Password=admin");
     }
