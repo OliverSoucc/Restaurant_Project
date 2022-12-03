@@ -34,4 +34,9 @@ public class DishService: IDishService
         
         return _repository.CreateNewDish(_mapper.Map<Dish>(dto));
     }
+
+    public string CreateDb()
+    {
+        return _repository.CreateDb();
+    }
 }

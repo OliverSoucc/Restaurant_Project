@@ -24,9 +24,10 @@ public class DishRepository: IDishRepository
         return dish;
     }
 
-    public void CreateDb()
+    public string CreateDb()
     {
         _context.Database.EnsureDeleted();
         _context.Database.EnsureCreated();
+        return "Database created";
     }
 }

@@ -6,4 +6,5 @@ public interface IDishService
 {
     public List<Dish> GetAllDishes();
     public Dish CreateNewDish(PostDishDTO dto);
+    public string CreateDb();
 }
