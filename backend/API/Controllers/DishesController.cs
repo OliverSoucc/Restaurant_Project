@@ -23,13 +23,20 @@ public class DishesController : ControllerBase
         return _dishService.GetAllDishes();
     }
 
+    [HttpGet]
+    [Route("CreateDb")]
+    public string CreateDb()
+    {
+        return _dishService.CreateDb();
+    }
+
     [HttpPost]
     public ActionResult<Dish> CreateNewDish(PostDishDTO dto)
     {
         try
         {
             var result = _dishService.CreateNewDish(dto);
-            return Created("dish/" + result.Id, result);
+            return Created("dishes/" + result.Id, result);
         }
         catch (ValidationException e)
         {
@@ -40,4 +47,5 @@ public class DishesController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+    
 }
