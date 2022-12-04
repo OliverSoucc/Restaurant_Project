@@ -26,5 +26,8 @@ public class RestaurantDbContext: DbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    public DbSet<Dish> DishTable { get; set; }
+    public DbSet<Dish> Dishes { get; set; }
+    public DbSet<Ingredient> Ingredients { get; set; }
+    public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<ReservationTable> ReservationTables { get; set; }
 }

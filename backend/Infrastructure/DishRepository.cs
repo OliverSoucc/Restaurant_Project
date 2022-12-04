@@ -14,12 +14,12 @@ public class DishRepository: IDishRepository
     
     public List<Dish> GetAllDishes()
     {
-        return _context.DishTable.ToList();
+        return _context.Dishes.ToList();
     }
 
     public Dish CreateNewDish(Dish dish)
     {
-        _context.DishTable.Add(dish);
+        _context.Dishes.Add(dish);
         _context.SaveChanges();
         return dish;
     }
