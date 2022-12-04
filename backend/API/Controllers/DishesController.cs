@@ -39,8 +39,8 @@ public class DishesController : ControllerBase
         {
             var validation = _postDishValidator.Validate(dto);
             if (!validation.IsValid) throw new ValidationException(validation.ToString());
-                var result = _dishService.CreateNewDish(dto);
-                
+
+            var result = _dishService.CreateNewDish(dto);
             return Created("dishes/" + result.Id, result);
         }
         catch (ValidationException e)
