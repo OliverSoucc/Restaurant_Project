@@ -1,7 +1,7 @@
-﻿using Application.Interfaces;
+﻿using Application.Interfaces.Repositories;
 using Domain;
 
-namespace Infrastructure;
+namespace Infrastructure.Repositories;
 
 public class DishRepository: IDishRepository
 {
@@ -17,6 +17,11 @@ public class DishRepository: IDishRepository
         return _context.Dishes.ToList();
     }
 
+    public Dish GetDish(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public Dish CreateNewDish(Dish dish)
     {
         _context.Dishes.Add(dish);
@@ -24,10 +29,13 @@ public class DishRepository: IDishRepository
         return dish;
     }
 
-    public string CreateDb()
+    public Dish DeleteDish(int id)
     {
-        _context.Database.EnsureDeleted();
-        _context.Database.EnsureCreated();
-        return "Database created";
+        throw new NotImplementedException();
+    }
+
+    public Dish UpdateDish(Dish dish)
+    {
+        throw new NotImplementedException();
     }
 }

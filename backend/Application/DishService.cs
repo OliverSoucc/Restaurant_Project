@@ -1,8 +1,7 @@
-﻿using Application.Interfaces;
+﻿using Application.Interfaces.Repositories;
 using Application.Validators;
 using AutoMapper;
 using Domain;
-using Domain.Interfaces;
 using FluentValidation;
 using ValidationException = FluentValidation.ValidationException;
 
@@ -10,9 +9,9 @@ namespace Application;
 
 public class DishService: IDishService
 {
-    private IDishRepository _repository;
-    private IMapper _mapper;
-    private IValidator<PostDishDTO> _postValidator;
+    private readonly IDishRepository _repository;
+    private readonly IMapper _mapper;
+    private readonly IValidator<PostDishDTO> _postValidator;
     public DishService(IDishRepository repository, IMapper mapper, IValidator<PostDishDTO> postValidator)
     {
         _repository = repository;
@@ -33,10 +32,5 @@ public class DishService: IDishService
         }
         
         return _repository.CreateNewDish(_mapper.Map<Dish>(dto));
-    }
-
-    public string CreateDb()
-    {
-        return _repository.CreateDb();
     }
 }

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Repositories.Migrations
 {
     /// <inheritdoc />
     public partial class DishIngredientRelation : Migration

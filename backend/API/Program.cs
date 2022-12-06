@@ -2,7 +2,7 @@ using Application.Validators;
 using AutoMapper;
 using Domain;
 using FluentValidation;
-using Infrastructure;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,12 +19,13 @@ builder.Services.AddDbContext<RestaurantDbContext>();
 var mapper = new MapperConfiguration(configure =>
 {
     configure.CreateMap<PostDishDTO, Dish>();
+    configure.CreateMap<IngredientDTO, Ingredient>();
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
 
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
-Infrastructure.DependencyResolver.DependencyResolverService.RegisterInfrastructureLayer(builder.Services);
+Infrastructure.Repositories.DependencyResolver.DependencyResolverService.RegisterInfrastructureLayer(builder.Services);
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
+using Application.Interfaces.Repositories;
 using Application.Validators;
 using Domain;
-using Domain.Interfaces;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,13 +23,6 @@ public class DishesController : ControllerBase
     public List<Dish> GetDishes()
     {
         return _dishService.GetAllDishes();
-    }
-
-    [HttpGet]
-    [Route("CreateDb")]
-    public string CreateDb()
-    {
-        return _dishService.CreateDb();
     }
 
     [HttpPost]
