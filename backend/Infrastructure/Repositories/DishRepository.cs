@@ -19,7 +19,7 @@ public class DishRepository: IDishRepository
 
     public Dish GetDish(int id)
     {
-        throw new NotImplementedException();
+        return _context.Dishes.Find(id);
     }
 
     public Dish CreateNewDish(Dish dish)
@@ -31,11 +31,16 @@ public class DishRepository: IDishRepository
 
     public Dish DeleteDish(int id)
     {
-        throw new NotImplementedException();
+        var dish = _context.Dishes.Find(id);
+        _context.Dishes.Remove(dish);
+        _context.SaveChanges();
+        return dish;
     }
 
     public Dish UpdateDish(Dish dish)
     {
-        throw new NotImplementedException();
+        _context.Dishes.Update(dish);
+        _context.SaveChanges();
+        return dish;
     }
 }

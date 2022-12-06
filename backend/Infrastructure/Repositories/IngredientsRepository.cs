@@ -33,11 +33,17 @@ public class IngredientsRepository: IIngredientRepository
 
     public Ingredient DeleteIngredient(int id)
     {
-        throw new NotImplementedException();
+        var ingredient = _context.Ingredients.Find(id);
+        _context.Ingredients.Remove(ingredient);
+        _context.SaveChanges();
+        
+        return ingredient;
     }
 
     public Ingredient UpdateIngredient(Ingredient ingredient)
     {
-        throw new NotImplementedException();
+        _context.Update(ingredient);
+        _context.SaveChanges();
+        return ingredient;
     }
 }
