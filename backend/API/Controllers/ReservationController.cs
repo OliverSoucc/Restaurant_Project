@@ -1,6 +1,12 @@
-namespace API.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
-public class ReservationController
+namespace API.Controllers;
+[ApiController]
+[Route("api/[controller]")]
+public class ReservationController: ControllerBase
 {
-    
+    public ReservationController()
+    {
+        
+    }
 }
