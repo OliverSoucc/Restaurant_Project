@@ -26,7 +26,7 @@ public class IngredientsController: ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Ingredient> CreateNewIngredient([FromBody] IngredientDTO dto)
+    public ActionResult<Ingredient> CreateNewIngredient([FromBody] GetIngredientDto dto)
     {
         try
         {

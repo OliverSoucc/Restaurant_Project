@@ -26,7 +26,7 @@ public class DishesController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Dish> CreateNewDish([FromBody]PostDishDTO dto)
+    public ActionResult<Dish> CreateNewDish([FromBody]GetDishDto dto)
     {
         try
         {

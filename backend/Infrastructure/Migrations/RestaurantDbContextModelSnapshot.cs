@@ -22,21 +22,6 @@ namespace Infrastructure.Repositories.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("DishIngredient", b =>
-                {
-                    b.Property<int>("DishesId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("IngredientsId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("DishesId", "IngredientsId");
-
-                    b.HasIndex("IngredientsId");
-
-                    b.ToTable("DishIngredient");
-                });
-
             modelBuilder.Entity("Domain.Dish", b =>
                 {
                     b.Property<int>("Id")
@@ -63,6 +48,21 @@ namespace Infrastructure.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Dishes");
+                });
+
+            modelBuilder.Entity("Domain.DishIngredient", b =>
+                {
+                    b.Property<int>("DishId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("DishId", "IngredientId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("DishIngredients");
                 });
 
             modelBuilder.Entity("Domain.Ingredient", b =>
@@ -142,19 +142,23 @@ namespace Infrastructure.Repositories.Migrations
                     b.ToTable("ReservationTables");
                 });
 
-            modelBuilder.Entity("DishIngredient", b =>
+            modelBuilder.Entity("Domain.DishIngredient", b =>
                 {
-                    b.HasOne("Domain.Dish", null)
-                        .WithMany()
-                        .HasForeignKey("DishesId")
+                    b.HasOne("Domain.Dish", "Dish")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("DishId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Ingredient", null)
-                        .WithMany()
-                        .HasForeignKey("IngredientsId")
+                    b.HasOne("Domain.Ingredient", "Ingredient")
+                        .WithMany("Dishes")
+                        .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Dish");
+
+                    b.Navigation("Ingredient");
                 });
 
             modelBuilder.Entity("Domain.ReservationTable", b =>
@@ -166,6 +170,16 @@ namespace Infrastructure.Repositories.Migrations
                         .IsRequired();
 
                     b.Navigation("Reservation");
+                });
+
+            modelBuilder.Entity("Domain.Dish", b =>
+                {
+                    b.Navigation("Ingredients");
+                });
+
+            modelBuilder.Entity("Domain.Ingredient", b =>
+                {
+                    b.Navigation("Dishes");
                 });
 
             modelBuilder.Entity("Domain.Reservation", b =>

@@ -9,5 +9,6 @@ public static class DependencyResolverService
     {
         services.AddScoped<IDishService, DishService>();
         services.AddScoped<IIngredientService, IngredientService>();
+        services.AddScoped<IDishIngredientService, DishIngredientService>();
     }
 }

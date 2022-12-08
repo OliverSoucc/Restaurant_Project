@@ -11,8 +11,8 @@ public class DishService: IDishService
 {
     private readonly IDishRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IValidator<PostDishDTO> _postValidator;
-    public DishService(IDishRepository repository, IMapper mapper, IValidator<PostDishDTO> postValidator)
+    private readonly IValidator<GetDishDto> _postValidator;
+    public DishService(IDishRepository repository, IMapper mapper, IValidator<GetDishDto> postValidator)
     {
         _repository = repository;
         _mapper = mapper;
@@ -23,7 +23,7 @@ public class DishService: IDishService
         return _repository.GetAllDishes();
     }
 
-    public Dish CreateNewDish(PostDishDTO dto)
+    public Dish CreateNewDish(GetDishDto dto)
     {
         var validation = _postValidator.Validate(dto);
         if (!validation.IsValid)
@@ -31,6 +31,6 @@ public class DishService: IDishService
             throw new ValidationException(validation.ToString());
         }
         
-        return _repository.CreateNewDish(_mapper.Map<Dish>(dto));
+        return _repository.CreateNewDish(_mapper.Map<Dish>(dto) );
     }
 }
