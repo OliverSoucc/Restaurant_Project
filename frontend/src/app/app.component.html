@@ -1,0 +1,75 @@
+<header class="text-white h-screen bg-white pt-[40px] bg-hero-pattern bg-cover relative">
+  <nav class="w-[1500px] mx-auto font-bold text-[20px] flex justify-between">
+    <div class="bg-white p-[10px] rounded-[10px]">
+      <img src="assets/images/omnifood-logo.png" alt="company logo" class="w-[200px] h-[30px]">
+    </div>
+    <div>ENJOY YOUR MEAL</div>
+  </nav>
+  <div class="w-[1200px] absolute left-1/2 top-1/2 translate-x-[-62%] translate-y-[-50%]">
+    <div class="w-1/2">
+      <h1 class="font-bold text-[52px] mb-[32px] leading-tight">Make an reservation immediately</h1>
+      <p class="text-[20px] leading-relaxed mb-[48px]">
+        The 365-days-per-year food, start eat healthy again. Tailored to your personal tastes and nutritional need
+      </p>
+      <a href="#"
+         class="text-[20px] font-semibold bg-[#e67e22] text-white inline-block py-[16px] px-[32px] rounded-[9px]">Reserve</a>
+    </div>
+  </div>
+</header>
+<section class="mb-[80px] mt-[50px]">
+  <div class="max-w-[1200px] px-[32px] mx-auto flex gap-[30px]">
+    <div *ngFor="let feature of features">
+      <app-feature [item]="feature"></app-feature>
+    </div>
+  </div>
+</section>
+<h1 class="text-[50px] uppercase">SEM BY SOM DAL TABULKU S TYM OBEDOVYM MENU</h1>
+<section class="mb-[150px]">
+  <h5 class="text-center text-[#e67e22] font-bold text-[16px]">Meals</h5>
+  <h2 class="text-center text-[42px] font-bold uppercase mb-[100px]">More than 50+ receipts</h2>
+  <div class="flex justify-center items-center gap-[50px]">
+    <div *ngFor="let card of cards">
+      <app-card [item]="card"></app-card>
+    </div>
+    <div class="self-start">
+      <h4 class="text-[32px] text-[#e67e22] font-bold mb-[30px]">Works with any diet:</h4>
+      <ul class="text-[18px] flex flex-col gap-[7px]">
+        <div *ngFor="let bulletPoint of bulletPoints">
+          <app-bullet-point [item]="bulletPoint"></app-bullet-point>
+        </div>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="bg-form-patter w-[1200px] mx-auto rounded-[33px] overflow-hidden">
+  <div class="flex gap-[100px]">
+    <div>
+      <h2 class="text-[42px] text-orange-900 font-bold uppercase pl-[50px] pt-[50px]">Make your reservation !</h2>
+      <p class="pl-[50px] w-[600px] text-[21px] pb-[70px]">Healthy, tasty and hassle-free meals are waiting for you.
+        Start eating well today. And the first meal is on us! </p>
+      <div class="flex flex-col w-[300px] pl-[50px]">
+        <form action="">
+          <mat-form-field appearance="fill" color="warn">
+            <mat-label>Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="warn">
+            <mat-label>Select</mat-label>
+            <mat-select>
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="warn">
+            <mat-label>Note</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <button class="py-[7px] px-[10px] bg-white bg-orange-800 rounded-[10px] text-white font-bold">Make reservation</button>
+        </form>
+      </div>
+    </div>
+    <img src="assets/images/formLady.jpg" alt="eating lady" class="w-[480px] h-[580px]">
+  </div>
+</section>
+
+
