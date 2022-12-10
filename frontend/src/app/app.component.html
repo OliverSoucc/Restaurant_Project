@@ -16,14 +16,18 @@
     </div>
   </div>
 </header>
-<section class="mb-[80px] mt-[50px]">
+<section class="mb-[120px] mt-[50px]">
   <div class="max-w-[1200px] px-[32px] mx-auto flex gap-[30px]">
     <div *ngFor="let feature of features">
       <app-feature [item]="feature"></app-feature>
     </div>
   </div>
 </section>
-<h1 class="text-[50px] uppercase">SEM BY SOM DAL TABULKU S TYM OBEDOVYM MENU</h1>
+<section class="mb-[110px]">
+<div *ngFor="let lunchMenu of lunchMenus">
+  <app-lunch-menu [item]="lunchMenu"></app-lunch-menu>
+</div>
+</section>
 <section class="mb-[150px]">
   <h5 class="text-center text-[#e67e22] font-bold text-[16px]">Meals</h5>
   <h2 class="text-center text-[42px] font-bold uppercase mb-[100px]">More than 50+ receipts</h2>
@@ -47,24 +51,38 @@
       <h2 class="text-[42px] text-orange-900 font-bold uppercase pl-[50px] pt-[50px]">Make your reservation !</h2>
       <p class="pl-[50px] w-[600px] text-[21px] pb-[70px]">Healthy, tasty and hassle-free meals are waiting for you.
         Start eating well today. And the first meal is on us! </p>
-      <div class="flex flex-col w-[300px] pl-[50px]">
+      <div class="pl-[50px]">
         <form action="">
-          <mat-form-field appearance="fill" color="warn">
-            <mat-label>Name</mat-label>
+          <div class="flex gap-[35px]">
+          <mat-form-field appearance="fill" color="warn" class="w-[250px]">
+            <mat-label>First Name</mat-label>
             <input matInput>
           </mat-form-field>
-          <mat-form-field appearance="fill" color="warn">
-            <mat-label>Select</mat-label>
+          <mat-form-field appearance="fill" color="warn" class="w-[250px]">
+            <mat-label>Last Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+          </div>
+          <div class="flex gap-[35px]">
+          <mat-form-field appearance="fill" color="warn" class="w-[250px]">
+            <mat-label>Email</mat-label>
+            <input matInput>
+          </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="fill" color="warn" class="w-[535px]">
+            <mat-label>Select Table</mat-label>
             <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
+              <mat-option value="one"><div class="flex gap-[25px]"><span><span class="font-bold text-[14px]">Table n.:</span> 4</span>|<span><span class="font-bold text-[14px]">Num. of Seats</span>: 3</span>|<span><span class="font-bold text-[14px]">Location</span>: Window</span></div></mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="fill" color="warn">
-            <mat-label>Note</mat-label>
-            <textarea matInput></textarea>
-          </mat-form-field>
-          <button class="py-[7px] px-[10px] bg-white bg-orange-800 rounded-[10px] text-white font-bold">Make reservation</button>
+          <button class="h-[55px] px-[55px] bg-white bg-orange-800 rounded-[10px] text-white font-bold">Make reservation</button>
         </form>
       </div>
     </div>

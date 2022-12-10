@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -6,13 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('picker') picker: any;
+  public minDate: Date | undefined;
+  public dateControl = new FormControl(null);
+   min() {
+    const now = new Date();
+    this.minDate = new Date();
+    return this.minDate.setDate(now.getDate() - 1);
+  }
 
-  @Component({
-    selector: 'form-field-overview-example',
-    templateUrl: 'form-field-overview-example.html',
-    styleUrls: ['form-field-overview-example.css'],
-  })
-  //features
+
+
+
+
   features = [
     {title: "Never cook again!", description:"We offer healthiest food with friendly price to everyone, do not hesitate and visit us every day"},
     {title: "Local and organic", description:"All our partners are from town and local villages, everything you eat will taste like home"},
@@ -33,5 +40,20 @@ export class AppComponent {
     {title: 'Lactose-free'},
     {title: 'Keto'},
     {title: 'Paleo'},
+  ];
+
+  //change to dynamic later
+  lunchMenus = [
+    {price:"11,99$",
+      dayInWeek:"monday",
+      description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid consequatur dolorum earum eum, ex fugiat, id illo impedit ipsum laboriosam maxime nam natus odit officia pariatur quas ratione veniam, vero?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi ducimus ea eos esse exercitationem mollitia nam nisi odit officia porro provident quae reiciendis sunt suscipit ut, voluptatem? Consectetur, nisi.\n",
+      ingredients: ['ingredients 2 | 50g', 'ingredients 2 | 50g', 'ingredients 3 | 50g', 'ingredients 4 | 50g', 'ingredients 5 | 50g', ]
+    },
+    {price:"9,44$",
+      dayInWeek:"tuesday",
+      description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid consequatur dolorum earum eum, ex fugiat, id illo impedit ipsum laboriosam maxime nam natus odit officia pariatur quas ratione veniam, vero?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi ducimus ea eos esse exercitationem mollitia nam nisi odit officia porro provident quae reiciendis sunt suscipit ut, voluptatem? Consectetur, nisi.\n",
+      ingredients: ['ingredients 2 | 50g', 'ingredients 2 | 50g', 'ingredients 3 | 50g', 'ingredients 4 | 50g', 'ingredients 5 | 50g', 'ingredients 6 | 50g']
+    },
   ]
+
 }
