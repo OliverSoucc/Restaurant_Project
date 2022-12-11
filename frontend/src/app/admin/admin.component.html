@@ -1,0 +1,33 @@
+<div class="flex gap-[10px] items-center ml-[50px] my-[25px]">
+  <h1 class="text-[32px] uppercase">
+    Reservations
+  </h1>
+  <div class="w-full h-[2px] bg-black"></div>
+</div>
+<div *ngFor="let reservation of reservations">
+  <div class="mb-[20px] py-[10px] px-[7px] border border-2 border-black flex gap-[50px] justify-center mx-[50px]">
+    <span><span class="font-bold">ID:</span> {{reservation.id}}</span>
+    <span><span class="font-bold">First Name:</span> {{reservation.firstName}}</span>
+    <span><span class="font-bold">Last Name:</span> {{reservation.lastName}}</span>
+    <span><span class="font-bold">Date:</span> {{reservation.date}}</span>
+    <span><span class="font-bold">Email:</span> {{reservation.email}}</span>
+    <span><span class="font-bold">Table Num.:</span> {{reservation.tableNumber}}</span>
+    <span><span class="font-bold">Number of Seats:</span> {{reservation.tableNumOfSeats}}</span>
+    <span><span class="font-bold">Table Location:</span> {{reservation.tableLocation}}</span>
+  </div>
+</div>
+
+
+
+
+<div class="flex gap-[10px] items-center ml-[50px] my-[25px]">
+  <h1 class="text-[32px] uppercase w-[250px]">
+    Lunch menu
+  </h1>
+  <div class="w-full h-[2px] bg-black"></div>
+</div>
+<div *ngFor="let lunchMenu of lunchMenus">
+  <app-lunch-menu [item]="lunchMenu"></app-lunch-menu>
+</div>
+
+
