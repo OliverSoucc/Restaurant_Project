@@ -1,5 +1,5 @@
 using Application;
-using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Application.DTOs.Dishes;
 using Domain;
 using Infrastructure.Repositories;

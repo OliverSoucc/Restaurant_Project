@@ -1,7 +1,8 @@
-using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
+using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Repositories.DependencyResolver;
+namespace Infrastructure.DependencyResolver;
 
 public static class DependencyResolverService
 {
@@ -11,5 +12,6 @@ public static class DependencyResolverService
         services.AddScoped<IIngredientRepository, IngredientsRepository>();
         services.AddScoped<IDishIngredientRepository, DishIngredientRepository>();
         services.AddScoped<IReservationRepository, ReservationRepository>();
+        services.AddScoped<IReservationTableRepository, ReservationTableRepository>();
     }
 }

@@ -1,6 +1,6 @@
 using Application.DTOs;
 using Application.DTOs.Reservation;
-using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,4 @@
-namespace Application.Interfaces.Repositories;
+namespace Application.Interfaces.Services;
 using Domain;
 
 public interface IIngredientRepository

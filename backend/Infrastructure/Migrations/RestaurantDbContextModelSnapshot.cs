@@ -108,7 +108,13 @@ namespace Infrastructure.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("ReservationTableId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ReservationTableId")
+                        .IsUnique();
 
                     b.ToTable("Reservations");
                 });
@@ -131,13 +137,7 @@ namespace Infrastructure.Repositories.Migrations
                     b.Property<int>("NumberOfSeats")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ReservationId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ReservationId")
-                        .IsUnique();
 
                     b.ToTable("ReservationTables");
                 });
@@ -161,15 +161,15 @@ namespace Infrastructure.Repositories.Migrations
                     b.Navigation("Ingredient");
                 });
 
-            modelBuilder.Entity("Domain.ReservationTable", b =>
+            modelBuilder.Entity("Domain.Reservation", b =>
                 {
-                    b.HasOne("Domain.Reservation", "Reservation")
-                        .WithOne("ReservationTable")
-                        .HasForeignKey("Domain.ReservationTable", "ReservationId")
+                    b.HasOne("Domain.ReservationTable", "ReservationTable")
+                        .WithOne("Reservation")
+                        .HasForeignKey("Domain.Reservation", "ReservationTableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Reservation");
+                    b.Navigation("ReservationTable");
                 });
 
             modelBuilder.Entity("Domain.Dish", b =>
@@ -182,10 +182,9 @@ namespace Infrastructure.Repositories.Migrations
                     b.Navigation("Dishes");
                 });
 
-            modelBuilder.Entity("Domain.Reservation", b =>
+            modelBuilder.Entity("Domain.ReservationTable", b =>
                 {
-                    b.Navigation("ReservationTable")
-                        .IsRequired();
+                    b.Navigation("Reservation");
                 });
 #pragma warning restore 612, 618
         }

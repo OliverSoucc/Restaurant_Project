@@ -3,6 +3,7 @@ using Application.DTOs;
 using Application.DTOs.Dishes;
 using Application.DTOs.Ingredient;
 using Application.DTOs.Reservation;
+using Application.DTOs.ReservationTable;
 using AutoMapper;
 using Domain;
 using FluentValidation;
@@ -30,13 +31,15 @@ var mapper = new MapperConfiguration(configure =>
         .ForMember(dto => dto.Ingredients, d => d.MapFrom(d => d.Ingredients.Select(di => di.Ingredient)));
     configure.CreateMap<PutReservationDto, Reservation>();
     configure.CreateMap<ReservationDTO, Reservation>();
+    configure.CreateMap<PutReservationTableDto, ReservationTable>();
+    configure.CreateMap<ReservationTableDTO, ReservationTable>();
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
 
 
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
-Infrastructure.Repositories.DependencyResolver.DependencyResolverService.RegisterInfrastructureLayer(builder.Services);
+Infrastructure.DependencyResolver.DependencyResolverService.RegisterInfrastructureLayer(builder.Services);
 
 var app = builder.Build();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

@@ -1,4 +1,4 @@
-using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.DependencyResolver;
@@ -11,5 +11,6 @@ public static class DependencyResolverService
         services.AddScoped<IIngredientService, IngredientService>();
         services.AddScoped<IDishIngredientService, DishIngredientService>();
         services.AddScoped<IReservationService, ReservationService>();
+        services.AddScoped<IReservationTableService, ReservationTableService>();
     }
 }

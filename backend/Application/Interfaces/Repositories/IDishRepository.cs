@@ -1,5 +1,5 @@
 using Domain;
-namespace Application.Interfaces.Repositories;
+namespace Application.Interfaces.Services;
 
 public interface IDishRepository
 {

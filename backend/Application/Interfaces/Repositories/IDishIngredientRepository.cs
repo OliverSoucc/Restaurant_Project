@@ -2,7 +2,7 @@ using Application.DTOs;
 using Application.DTOs.Dishes;
 using Domain;
 
-namespace Application.Interfaces.Repositories;
+namespace Application.Interfaces.Services;
 
 public interface IDishIngredientRepository
 {

@@ -1,4 +1,4 @@
-using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Domain;
 
 namespace Infrastructure.Repositories;
@@ -18,7 +18,9 @@ public class ReservationTableRepository: IReservationTableRepository
 
     public ReservationTable GetReservationTable(int id)
     {
-        return _context.ReservationTables.Find(id);
+        var result = _context.ReservationTables.Find(id);
+        if (result == null) throw new ArgumentException("Reservation table with provided Id does not exist");
+        return result;
     }
 
     public ReservationTable CreateReservationTable(ReservationTable reservationTable)
@@ -31,6 +33,7 @@ public class ReservationTableRepository: IReservationTableRepository
     public ReservationTable DeleteReservationTable(int id)
     {
         var reservationTable = _context.ReservationTables.Find(id);
+        if (reservationTable == null) throw new AggregateException("Reservation table with provided Id does not exist");
         _context.ReservationTables.Remove(reservationTable);
         _context.SaveChanges();
         return reservationTable;

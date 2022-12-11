@@ -1,6 +1,6 @@
 using Application.DTOs.Ingredient;
 
-namespace Application.Interfaces.Repositories;
+namespace Application.Interfaces.Services;
 using Domain;
 
 public interface IIngredientService

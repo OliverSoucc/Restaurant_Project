@@ -1,4 +1,4 @@
-using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Application.DTOs.Ingredient;
 using AutoMapper;
 using Domain;

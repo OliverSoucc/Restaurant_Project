@@ -1,5 +1,6 @@
-using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
@@ -14,7 +15,7 @@ public class ReservationRepository: IReservationRepository
     
     public List<Reservation> GetReservations()
     {
-        return _context.Reservations.ToList();
+        return _context.Reservations.Include(r => r.ReservationTable).ToList();
     }
 
     public Reservation GetReservation(int id)
@@ -26,6 +27,9 @@ public class ReservationRepository: IReservationRepository
 
     public Reservation CreateReservation(Reservation reservation)
     {
+        var reservationTable = _context.ReservationTables.Find(reservation.ReservationTableId);
+        if (reservationTable == null) throw new ArgumentException("No reservation table with the id was found");
+
         _context.Reservations.Add(reservation);
         _context.SaveChanges();
         return reservation;
