@@ -1,4 +1,4 @@
-namespace Application.Validators;
+namespace Application.DTOs.Ingredient;
 
 public class GetIngredientDto
 {

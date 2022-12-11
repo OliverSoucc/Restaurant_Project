@@ -10,5 +10,6 @@ public static class DependencyResolverService
         services.AddScoped<IDishRepository, DishRepository>();
         services.AddScoped<IIngredientRepository, IngredientsRepository>();
         services.AddScoped<IDishIngredientRepository, DishIngredientRepository>();
+        services.AddScoped<IReservationRepository, ReservationRepository>();
     }
 }

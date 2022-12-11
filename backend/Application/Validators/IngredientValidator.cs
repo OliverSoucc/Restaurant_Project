@@ -1,6 +1,7 @@
+using Application.DTOs.Ingredient;
 using FluentValidation;
 
-namespace Application.Validators;
+namespace Application.DTOs;
 
 public class IngredientValidator: AbstractValidator<GetIngredientDto>
 {

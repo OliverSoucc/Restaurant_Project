@@ -1,5 +1,5 @@
 using Application.Interfaces.Repositories;
-using Application.Validators;
+using Application.DTOs;
 using Domain;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -30,9 +30,6 @@ public class DishesController : ControllerBase
     {
         try
         {
-            var validation = _postDishValidator.Validate(dto);
-            if (!validation.IsValid) throw new ValidationException(validation.ToString());
-
             var result = _dishService.CreateNewDish(dto);
             return Created("dishes/" + result.Id, result);
         }

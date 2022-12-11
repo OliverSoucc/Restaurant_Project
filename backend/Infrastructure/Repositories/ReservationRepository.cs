@@ -19,20 +19,22 @@ public class ReservationRepository: IReservationRepository
 
     public Reservation GetReservation(int id)
     {
-        return _context.Reservations.Find(id);
+        var result = _context.Reservations.Find(id);
+        if (result == null) throw new ArgumentException("Reservation with provided Id was not found");
+        return result;
     }
 
     public Reservation CreateReservation(Reservation reservation)
     {
         _context.Reservations.Add(reservation);
         _context.SaveChanges();
-
         return reservation;
     }
 
     public Reservation DeleteReservation(int id)
     {
         var reservation = _context.Reservations.Find(id);
+        if (reservation == null) throw new ArgumentException("Reservation with provided Id was not found");
         _context.Reservations.Remove(reservation);
         _context.SaveChanges();
         return reservation;

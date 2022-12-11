@@ -1,6 +1,6 @@
 using Application;
 using Application.Interfaces.Repositories;
-using Application.Validators.Dishes;
+using Application.DTOs.Dishes;
 using Domain;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http.HttpResults;

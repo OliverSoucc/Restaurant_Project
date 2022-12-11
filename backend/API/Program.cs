@@ -1,11 +1,12 @@
 using System.Text.Json.Serialization;
-using Application.Validators;
-using Application.Validators.Dishes;
+using Application.DTOs;
+using Application.DTOs.Dishes;
+using Application.DTOs.Ingredient;
+using Application.DTOs.Reservation;
 using AutoMapper;
 using Domain;
 using FluentValidation;
 using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,15 +28,18 @@ var mapper = new MapperConfiguration(configure =>
     configure.CreateMap<Ingredient, GetIngredientDto>();
     configure.CreateMap<Dish, GetDishDto>()
         .ForMember(dto => dto.Ingredients, d => d.MapFrom(d => d.Ingredients.Select(di => di.Ingredient)));
+    configure.CreateMap<PutReservationDto, Reservation>();
+    configure.CreateMap<ReservationDTO, Reservation>();
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
+
 
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
 Infrastructure.Repositories.DependencyResolver.DependencyResolverService.RegisterInfrastructureLayer(builder.Services);
 
 var app = builder.Build();
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

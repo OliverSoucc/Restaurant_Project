@@ -1,5 +1,6 @@
 using Application.Interfaces.Repositories;
-using Application.Validators;
+using Application.DTOs;
+using Application.DTOs.Ingredient;
 using Domain;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;

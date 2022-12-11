@@ -1,4 +1,4 @@
-using Application.Validators;
+using Application.DTOs;
 using Domain;
 
 namespace Application.Interfaces.Repositories;

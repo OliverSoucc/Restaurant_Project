@@ -1,6 +1,6 @@
 using Application.Interfaces.Repositories;
-using Application.Validators;
-using Application.Validators.Dishes;
+using Application.DTOs;
+using Application.DTOs.Dishes;
 using AutoMapper;
 using Domain;
 

@@ -1,5 +1,5 @@
-using Application.Validators;
-using Application.Validators.Dishes;
+using Application.DTOs;
+using Application.DTOs.Dishes;
 using Domain;
 
 namespace Application.Interfaces.Repositories;

@@ -18,8 +18,10 @@ public class DishRepository: IDishRepository
     }
 
     public Dish GetDish(int id)
-    {   
-        return _context.Dishes.Find(id);
+    {
+        var result = _context.Dishes.Find(id);
+        if (result == null) throw new ArgumentException("Dish with provided Id was not found");
+        return result;
     }
 
     public Dish CreateNewDish(Dish dish)
@@ -31,10 +33,11 @@ public class DishRepository: IDishRepository
 
     public Dish DeleteDish(int id)
     {
-        var dish = _context.Dishes.Find(id);
-        _context.Dishes.Remove(dish);
+        var result = _context.Dishes.Find(id);
+        if (result == null) throw new ArgumentException("Dish with provided Id was not found");
+        _context.Dishes.Remove(result);
         _context.SaveChanges();
-        return dish;
+        return result;
     }
 
     public Dish UpdateDish(Dish dish)

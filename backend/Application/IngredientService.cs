@@ -1,5 +1,5 @@
 using Application.Interfaces.Repositories;
-using Application.Validators;
+using Application.DTOs.Ingredient;
 using AutoMapper;
 using Domain;
 using FluentValidation;

@@ -1,6 +1,7 @@
+using Application.DTOs.Ingredient;
 using Domain;
 
-namespace Application.Validators;
+namespace Application.DTOs;
 
 public class GetDishDto
 {

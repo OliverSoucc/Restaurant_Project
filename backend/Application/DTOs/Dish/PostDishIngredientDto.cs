@@ -1,4 +1,4 @@
-namespace Application.Validators.Dishes;
+namespace Application.DTOs.Dishes;
 
 public class PostDishIngredientDto
 {
