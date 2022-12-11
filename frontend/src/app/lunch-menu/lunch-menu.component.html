@@ -1,4 +1,4 @@
-<div class="p-[30px] bg-orange-100 max-w-[1200px] mx-auto justify-center items-center rounded-[33px] my-[50px]">
+<div class="p-[30px] max-w-[1200px] mx-auto justify-center items-center my-[50px]" [ngClass]="item.homePage ? 'bg-orange-100 rounded-[33px]' : 'border-2 border-black'">
   <div class="flex justify-between items-center mb-[35px]">
     <p class="text-[18px]">Price: <span class="inner-block px-[10px] py-[4px] bg-green-500 text-white rounded-[33px]">{{item.price}}</span></p>
     <span class="text-[24px] font-bold uppercase text-orange-900">{{item.dayInWeek}}</span>

@@ -17,6 +17,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import { LunchMenuComponent } from './lunch-menu/lunch-menu.component';
+import {RouterModule, Routes} from "@angular/router";
+import { HomeComponent } from './home/home.component';
+import { AdminComponent } from './admin/admin.component';
+
+
+//routing
+const appRoutes: Routes = [
+  {path:'', component: HomeComponent},
+  {path: 'admin', component: AdminComponent}
+]
 
 @NgModule({
   declarations: [
@@ -24,7 +34,9 @@ import { LunchMenuComponent } from './lunch-menu/lunch-menu.component';
     FeatureComponent,
     CardComponent,
     BulletPointComponent,
-    LunchMenuComponent
+    LunchMenuComponent,
+    HomeComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -41,8 +53,11 @@ import { LunchMenuComponent } from './lunch-menu/lunch-menu.component';
     MatButtonModule,
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
-    MatCardModule
+    MatCardModule,
+    //routing
+    RouterModule.forRoot(appRoutes)
   ],
+  exports:[RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })
