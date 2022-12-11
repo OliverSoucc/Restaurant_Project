@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.Repositories;
 using Application.DTOs;
+using Application.DTOs.Dish;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Domain;
@@ -24,14 +25,23 @@ public class DishService: IDishService
         return _repository.GetAllDishes();
     }
 
-    public Dish CreateNewDish(GetDishDto dto)
+    public Dish GetDish(int id)
     {
-        var validation = _postValidator.Validate(dto);
-        if (!validation.IsValid)
-        {
-            throw new ValidationException(validation.ToString());
-        }
-        
-        return _repository.CreateNewDish(_mapper.Map<Dish>(dto) );
+        return _repository.GetDish(id);
+    }
+
+    public Dish CreateNewDish(PostDishDto dto)
+    {
+        return _repository.CreateNewDish(_mapper.Map<Dish>(dto));
+    }
+
+    public Dish UpdateDish(PutDishDto dto)
+    {
+        return _repository.UpdateDish(_mapper.Map<Dish>(dto));
+    }
+
+    public Dish DeleteDish(int id)
+    {
+        return _repository.DeleteDish(id);
     }
 }

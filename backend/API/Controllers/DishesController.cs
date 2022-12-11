@@ -1,5 +1,5 @@
-using Application.Interfaces.Repositories;
 using Application.DTOs;
+using Application.DTOs.Dish;
 using Application.Interfaces.Services;
 using Domain;
 using FluentValidation;
@@ -26,8 +26,23 @@ public class DishesController : ControllerBase
         return _dishService.GetAllDishes();
     }
 
+    [HttpGet]
+    [Route("{id}")]
+    public ActionResult<Dish> GetDish([FromRoute]int id)
+    {
+        try
+        {
+            var result = _dishService.GetDish(id);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
     [HttpPost]
-    public ActionResult<Dish> CreateNewDish([FromBody]GetDishDto dto)
+    public ActionResult<Dish> CreateNewDish([FromBody]PostDishDto dto)
     {
         try
         {
@@ -43,5 +58,33 @@ public class DishesController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
-    
+
+    [HttpPut]
+    public ActionResult<Dish> UpdateDish([FromBody] PutDishDto dto)
+    {
+        try
+        {
+            var result = _dishService.UpdateDish(dto);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public ActionResult<Dish> DeleteDish([FromRoute] int id)
+    {
+        try
+        {
+            var result = _dishService.DeleteDish(id);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }

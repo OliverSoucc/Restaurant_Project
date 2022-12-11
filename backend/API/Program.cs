@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Application.DTOs;
+using Application.DTOs.Dish;
 using Application.DTOs.Dishes;
 using Application.DTOs.Ingredient;
 using Application.DTOs.Reservation;
@@ -34,6 +35,8 @@ var mapper = new MapperConfiguration(configure =>
     configure.CreateMap<PutReservationTableDto, ReservationTable>();
     configure.CreateMap<ReservationTableDTO, ReservationTable>();
     configure.CreateMap<PutIngredientDto, Ingredient>();
+    configure.CreateMap<PostDishDto, Dish>();
+    configure.CreateMap<PutDishDto, Dish>();
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
