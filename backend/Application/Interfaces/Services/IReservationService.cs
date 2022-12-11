@@ -10,5 +10,6 @@ public interface IReservationService
     public Reservation GetReservation(int id);
     public Reservation CreateReservation(ReservationDTO reservationDto);
     public Reservation UpdateReservation(PutReservationDto reservationDto);
+    public Reservation DeleteReservation(int id);
 
 }

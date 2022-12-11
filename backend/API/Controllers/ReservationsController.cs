@@ -70,4 +70,19 @@ public class ReservationsController: ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public ActionResult<Reservation> DeleteReservation([FromRoute] int id)
+    {
+        try
+        {
+            var result = _service.DeleteReservation(id);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }

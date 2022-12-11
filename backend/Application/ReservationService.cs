@@ -37,4 +37,9 @@ public class ReservationService: IReservationService
     {
         return _repository.UpdateReservation(_mapper.Map<Reservation>(reservationDto));
     }
+
+    public Reservation DeleteReservation(int id)
+    {
+        return _repository.DeleteReservation(id);
+    }
 }
