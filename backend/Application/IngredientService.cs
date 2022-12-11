@@ -1,5 +1,6 @@
-using Application.Interfaces.Services;
+using Application.Interfaces.Repositories;
 using Application.DTOs.Ingredient;
+using Application.Interfaces.Services;
 using AutoMapper;
 using Domain;
 using FluentValidation;
@@ -42,5 +43,14 @@ public class IngredientService: IIngredientService
     {
         return _repository.GetIngredient(id);
     }
-    
+
+    public Ingredient UpdateIngredient(PutIngredientDto dto)
+    {
+        return _repository.UpdateIngredient(_mapper.Map<Ingredient>(dto));
+    }
+
+    public Ingredient DeleteIngredient(int id)
+    {
+        return _repository.DeleteIngredient(id);
+    }
 }

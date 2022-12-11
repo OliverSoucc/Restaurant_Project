@@ -1,6 +1,6 @@
 using Application.DTOs;
-using Application.DTOs.Reservation;
 using Application.DTOs.ReservationTable;
+using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Domain;

@@ -1,4 +1,4 @@
-using Application.Interfaces.Services;
+using Application.Interfaces.Repositories;
 using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 

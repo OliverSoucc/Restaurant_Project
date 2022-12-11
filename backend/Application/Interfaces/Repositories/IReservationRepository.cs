@@ -1,6 +1,6 @@
 using Domain;
 
-namespace Application.Interfaces.Services;
+namespace Application.Interfaces.Repositories;
 
 public interface IReservationRepository
 {

@@ -33,6 +33,7 @@ var mapper = new MapperConfiguration(configure =>
     configure.CreateMap<ReservationDTO, Reservation>();
     configure.CreateMap<PutReservationTableDto, ReservationTable>();
     configure.CreateMap<ReservationTableDTO, ReservationTable>();
+    configure.CreateMap<PutIngredientDto, Ingredient>();
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);

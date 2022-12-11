@@ -1,6 +1,7 @@
-using Application.Interfaces.Services;
+using Application.Interfaces.Repositories;
 using Application.DTOs;
 using Application.DTOs.Ingredient;
+using Application.Interfaces.Services;
 using Domain;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
@@ -63,6 +64,35 @@ public class IngredientsController: ControllerBase
         catch (Exception e)
         {
             return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpPut]
+    public ActionResult<Ingredient> UpdateIngredient([FromBody] PutIngredientDto dto)
+    {
+        try
+        {
+            var result = _service.UpdateIngredient(dto);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public ActionResult<Ingredient> DeleteIngredient([FromRoute] int id)
+    {
+        try
+        {
+            var result = _service.DeleteIngredient(id);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
         }
     }
 }
