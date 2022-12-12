@@ -6,7 +6,16 @@ on:
 jobs: 
   build:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@master
-      - run: dotnet restore
-      - run: dotnet build
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with: 
+          dotnet-version: 7.0.0
+      - name: Go to backend directory
+        run: cd .\backend\
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build
