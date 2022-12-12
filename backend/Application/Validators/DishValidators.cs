@@ -1,8 +1,8 @@
 using FluentValidation;
 
-namespace Application.Validators;
+namespace Application.DTOs;
 
-public class PostDishValidator: AbstractValidator<PostDishDTO>
+public class PostDishValidator: AbstractValidator<GetDishDto>
 {
     public PostDishValidator()
     {

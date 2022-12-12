@@ -1,13 +1,14 @@
-using Application.Validators;
+using Application.DTOs;
+using Application.DTOs.Dish;
+using Application.Interfaces.Services;
 using Domain;
-using Domain.Interfaces;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class DishesController : ControllerBase
 {
     private IDishService _dishService;
@@ -26,20 +27,25 @@ public class DishesController : ControllerBase
     }
 
     [HttpGet]
-    [Route("CreateDb")]
-    public string CreateDb()
-    {
-        return _dishService.CreateDb();
-    }
-
-    [HttpPost]
-    public ActionResult<Dish> CreateNewDish([FromBody]PostDishDTO dto)
+    [Route("{id}")]
+    public ActionResult<Dish> GetDish([FromRoute]int id)
     {
         try
         {
-            var validation = _postDishValidator.Validate(dto);
-            if (!validation.IsValid) throw new ValidationException(validation.ToString());
+            var result = _dishService.GetDish(id);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 
+    [HttpPost]
+    public ActionResult<Dish> CreateNewDish([FromBody]PostDishDto dto)
+    {
+        try
+        {
             var result = _dishService.CreateNewDish(dto);
             return Created("dishes/" + result.Id, result);
         }
@@ -52,5 +58,33 @@ public class DishesController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
-    
+
+    [HttpPut]
+    public ActionResult<Dish> UpdateDish([FromBody] PutDishDto dto)
+    {
+        try
+        {
+            var result = _dishService.UpdateDish(dto);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public ActionResult<Dish> DeleteDish([FromRoute] int id)
+    {
+        try
+        {
+            var result = _dishService.DeleteDish(id);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }

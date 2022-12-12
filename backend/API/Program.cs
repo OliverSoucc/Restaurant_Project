@@ -1,9 +1,14 @@
-using Application.Validators;
+using System.Text.Json.Serialization;
+using Application.DTOs;
+using Application.DTOs.Dish;
+using Application.DTOs.Dishes;
+using Application.DTOs.Ingredient;
+using Application.DTOs.Reservation;
+using Application.DTOs.ReservationTable;
 using AutoMapper;
 using Domain;
 using FluentValidation;
-using Infrastructure;
-using Microsoft.EntityFrameworkCore;
+using Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,19 +20,33 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<RestaurantDbContext>();
-
+builder.Services.AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 var mapper = new MapperConfiguration(configure =>
 {
-    configure.CreateMap<PostDishDTO, Dish>();
+    configure.CreateMap<GetDishDto, Dish>();
+    configure.CreateMap<GetIngredientDto, Ingredient>();
+    configure.CreateMap<PostDishIngredientDto, DishIngredient>();
+    configure.CreateMap<Ingredient, GetIngredientDto>();
+    configure.CreateMap<Dish, GetDishDto>()
+        .ForMember(dto => dto.Ingredients, d => d.MapFrom(d => d.Ingredients.Select(di => di.Ingredient)));
+    configure.CreateMap<PutReservationDto, Reservation>();
+    configure.CreateMap<ReservationDTO, Reservation>();
+    configure.CreateMap<PutReservationTableDto, ReservationTable>();
+    configure.CreateMap<ReservationTableDTO, ReservationTable>();
+    configure.CreateMap<PutIngredientDto, Ingredient>();
+    configure.CreateMap<PostDishDto, Dish>();
+    configure.CreateMap<PutDishDto, Dish>();
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
+
 
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
 Infrastructure.DependencyResolver.DependencyResolverService.RegisterInfrastructureLayer(builder.Services);
 
 var app = builder.Build();
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

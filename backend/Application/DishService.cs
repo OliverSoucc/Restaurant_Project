@@ -1,8 +1,9 @@
-﻿using Application.Interfaces;
-using Application.Validators;
+﻿using Application.Interfaces.Repositories;
+using Application.DTOs;
+using Application.DTOs.Dish;
+using Application.Interfaces.Services;
 using AutoMapper;
 using Domain;
-using Domain.Interfaces;
 using FluentValidation;
 using ValidationException = FluentValidation.ValidationException;
 
@@ -10,10 +11,10 @@ namespace Application;
 
 public class DishService: IDishService
 {
-    private IDishRepository _repository;
-    private IMapper _mapper;
-    private IValidator<PostDishDTO> _postValidator;
-    public DishService(IDishRepository repository, IMapper mapper, IValidator<PostDishDTO> postValidator)
+    private readonly IDishRepository _repository;
+    private readonly IMapper _mapper;
+    private readonly IValidator<GetDishDto> _postValidator;
+    public DishService(IDishRepository repository, IMapper mapper, IValidator<GetDishDto> postValidator)
     {
         _repository = repository;
         _mapper = mapper;
@@ -24,19 +25,23 @@ public class DishService: IDishService
         return _repository.GetAllDishes();
     }
 
-    public Dish CreateNewDish(PostDishDTO dto)
+    public Dish GetDish(int id)
     {
-        var validation = _postValidator.Validate(dto);
-        if (!validation.IsValid)
-        {
-            throw new ValidationException(validation.ToString());
-        }
-        
+        return _repository.GetDish(id);
+    }
+
+    public Dish CreateNewDish(PostDishDto dto)
+    {
         return _repository.CreateNewDish(_mapper.Map<Dish>(dto));
     }
 
-    public string CreateDb()
+    public Dish UpdateDish(PutDishDto dto)
     {
-        return _repository.CreateDb();
+        return _repository.UpdateDish(_mapper.Map<Dish>(dto));
+    }
+
+    public Dish DeleteDish(int id)
+    {
+        return _repository.DeleteDish(id);
     }
 }
