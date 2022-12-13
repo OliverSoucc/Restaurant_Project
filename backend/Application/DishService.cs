@@ -20,28 +20,28 @@ public class DishService: IDishService
         _mapper = mapper;
         _postValidator = postValidator;
     }
-    public List<Dish> GetAllDishes()
+    public List<GetDishDto> GetAllDishes()
     {
-        return _repository.GetAllDishes();
+        return _mapper.Map<List<GetDishDto>>(_repository.GetAllDishes());
     }
 
-    public Dish GetDish(int id)
+    public GetDishDto GetDish(int id)
     {
-        return _repository.GetDish(id);
+        return _mapper.Map<GetDishDto>(_repository.GetDish(id));
     }
 
-    public Dish CreateNewDish(PostDishDto dto)
+    public GetDishDto CreateNewDish(PostDishDto dto)
     {
-        return _repository.CreateNewDish(_mapper.Map<Dish>(dto));
+        return _mapper.Map<GetDishDto>(_repository.CreateNewDish(_mapper.Map<Dish>(dto)));
     }
 
-    public Dish UpdateDish(PutDishDto dto)
+    public GetDishDto UpdateDish(PutDishDto dto)
     {
-        return _repository.UpdateDish(_mapper.Map<Dish>(dto));
+        return _mapper.Map<GetDishDto>(_repository.UpdateDish(_mapper.Map<Dish>(dto)));
     }
 
-    public Dish DeleteDish(int id)
+    public GetDishDto DeleteDish(int id)
     {
-        return _repository.DeleteDish(id);
+        return _mapper.Map<GetDishDto>(_repository.DeleteDish(id));
     }
 }

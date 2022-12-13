@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Infrastructure.Repositories.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
     partial class RestaurantDbContextModelSnapshot : ModelSnapshot
@@ -41,9 +41,8 @@ namespace Infrastructure.Repositories.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
-                    b.Property<string>("WeekDay")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("WeekDay")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 

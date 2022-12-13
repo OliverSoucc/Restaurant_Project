@@ -6,9 +6,9 @@ namespace Application.Interfaces.Services;
 
 public interface IDishService
 {
-    public List<Dish> GetAllDishes();
-    public Dish GetDish(int id);
-    public Dish CreateNewDish(PostDishDto dto);
-    public Dish UpdateDish(PutDishDto dto);
-    public Dish DeleteDish(int id);
+    public List<GetDishDto> GetAllDishes();
+    public GetDishDto GetDish(int id);
+    public GetDishDto CreateNewDish(PostDishDto dto);
+    public GetDishDto UpdateDish(PutDishDto dto);
+    public GetDishDto DeleteDish(int id);
 }

@@ -18,28 +18,28 @@ public class ReservationTableService: IReservationTableService
         _repository = repository;
     }
     
-    public ICollection<ReservationTable> GetReservationTables()
+    public ICollection<GetReservationTableDto> GetReservationTables()
     {
-        return _repository.GetReservationTables();
+        return _mapper.Map<ICollection<GetReservationTableDto>>(_repository.GetReservationTables());
     }
 
-    public ReservationTable GetReservationTable(int id)
+    public GetReservationTableDto GetReservationTable(int id)
     {
-        return _repository.GetReservationTable(id);
+        return _mapper.Map<GetReservationTableDto>(_repository.GetReservationTable(id));
     }
 
-    public ReservationTable CreateReservationTable(ReservationTableDTO dto)
+    public GetReservationTableDto CreateReservationTable(ReservationTableDTO dto)
     {
-        return _repository.CreateReservationTable(_mapper.Map<ReservationTable>(dto));
+        return _mapper.Map<GetReservationTableDto>(_repository.CreateReservationTable(_mapper.Map<ReservationTable>(dto)));
     }
 
-    public ReservationTable UpdateReservationTable(PutReservationTableDto dto)
+    public GetReservationTableDto UpdateReservationTable(PutReservationTableDto dto)
     {
-        return _repository.UpdateReservationTable(_mapper.Map<ReservationTable>(dto));
+        return _mapper.Map<GetReservationTableDto>(_repository.UpdateReservationTable(_mapper.Map<ReservationTable>(dto)));
     }
 
-    public ReservationTable DeleteReservationTable(int id)
+    public GetReservationTableDto DeleteReservationTable(int id)
     {
-        return _repository.DeleteReservationTable(id);
+        return _mapper.Map<GetReservationTableDto>(_repository.DeleteReservationTable(id));
     }
 }

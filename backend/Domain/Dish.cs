@@ -6,6 +6,6 @@ public class Dish
     public string Name { get; set; } = string.Empty;
     public int Price  { get; set; }
     public string Description { get; set; } = string.Empty;
-    public string WeekDay { get; set; } = string.Empty;
-    public ICollection<DishIngredient>? Ingredients { get; set; }
+    public DateTime WeekDay { get; set; }
+    public ICollection<DishIngredient> Ingredients { get; set; }
 }

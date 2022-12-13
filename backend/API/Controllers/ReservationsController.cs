@@ -32,7 +32,7 @@ public class ReservationsController: ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Reservation> GetReservation([FromRoute] int id)
+    public ActionResult<GetReservationDto> GetReservation([FromRoute] int id)
     {
         try
         {

@@ -6,10 +6,10 @@ namespace Application.Interfaces.Services;
 
 public interface IReservationService
 {
-    public ICollection<Reservation> GetReservations();
-    public Reservation GetReservation(int id);
-    public Reservation CreateReservation(ReservationDTO reservationDto);
-    public Reservation UpdateReservation(PutReservationDto reservationDto);
-    public Reservation DeleteReservation(int id);
+    public ICollection<GetReservationDto> GetReservations();
+    public GetReservationDto GetReservation(int id);
+    public GetReservationDto CreateReservation(ReservationDTO reservationDto);
+    public GetReservationDto UpdateReservation(PutReservationDto reservationDto);
+    public GetReservationDto DeleteReservation(int id);
 
 }

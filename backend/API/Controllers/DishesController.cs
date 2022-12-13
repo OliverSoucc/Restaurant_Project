@@ -21,9 +21,16 @@ public class DishesController : ControllerBase
     }
 
     [HttpGet]
-    public List<Dish> GetDishes()
+    public ActionResult<List<Dish>> GetDishes()
     {
-        return _dishService.GetAllDishes();
+        try
+        {
+            return Ok(_dishService.GetAllDishes());
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 
     [HttpGet]
