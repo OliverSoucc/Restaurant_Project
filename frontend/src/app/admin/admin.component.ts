@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-admin',
@@ -6,14 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
+
+  toppings = new FormControl('');
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   reservations = [
-    {id: "1", firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
-    {id: "2", firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
-    {id: "3", firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
-    {id: "4", firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
-    {id: "5", firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
-    {id: "6", firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
-    {id: "7", firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
+    {id: 1, firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
+    {id: 2, firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
+    {id: 3, firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
+    {id: 4, firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
+    {id: 5, firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
+    {id: 6, firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
+    {id: 7, firstName:"Matej", lastName: "Kuka", date: Date.now(), email:"loptos@hhh.com", tableNumber: 5,  tableNumOfSeats: 4, tableLocation: 'window'},
   ];
 
   lunchMenus = [
