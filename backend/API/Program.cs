@@ -43,6 +43,7 @@ var mapper = new MapperConfiguration(configure =>
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
+builder.Services.AddCors();
 
 
 Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
@@ -55,6 +56,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors(options =>
+    {
+        options.AllowAnyOrigin();
+        options.AllowAnyHeader();
+        options.AllowAnyMethod();
+    });
 }
 
 app.UseHttpsRedirection();
