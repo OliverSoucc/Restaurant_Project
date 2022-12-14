@@ -21,11 +21,13 @@ public class DishesController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<Dish>> GetDishes()
+    public IActionResult GetDishes()
     {
         try
         {
-            return Ok(_dishService.GetAllDishes());
+            var dishes = _dishService.GetAllDishes();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            return Ok(dishes);
         }
         catch (Exception e)
         {
@@ -35,7 +37,7 @@ public class DishesController : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Dish> GetDish([FromRoute]int id)
+    public IActionResult GetDish([FromRoute]int id)
     {
         try
         {
@@ -49,7 +51,7 @@ public class DishesController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Dish> CreateNewDish([FromBody]PostDishDto dto)
+    public IActionResult CreateNewDish([FromBody]PostDishDto dto)
     {
         try
         {
@@ -67,7 +69,7 @@ public class DishesController : ControllerBase
     }
 
     [HttpPut]
-    public ActionResult<Dish> UpdateDish([FromBody] PutDishDto dto)
+    public ActionResult UpdateDish([FromBody] PutDishDto dto)
     {
         try
         {
