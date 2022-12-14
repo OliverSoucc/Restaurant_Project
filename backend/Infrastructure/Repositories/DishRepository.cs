@@ -1,9 +1,10 @@
 ﻿using Application.Interfaces.Repositories;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
-public class DishRepository: IDishRepository
+public class DishRepository : IDishRepository
 {
     private readonly RestaurantDbContext _context;
 
@@ -11,15 +12,21 @@ public class DishRepository: IDishRepository
     {
         _context = context;
     }
-    
+
     public List<Dish> GetAllDishes()
     {
-        return _context.Dishes.ToList();
+        return _context.Dishes
+            .Include(d => d.Ingredients)
+            .ThenInclude(di => di.Ingredient)
+            .ToList();
     }
 
     public Dish GetDish(int id)
     {
-        var result = _context.Dishes.Find(id);
+        var result = _context.Dishes
+            .Include(d => d.Ingredients)
+            .ThenInclude(di => di.Ingredient)
+            .FirstOrDefault();
         if (result == null) throw new ArgumentException("Dish with provided Id was not found");
         return result;
     }
@@ -28,6 +35,7 @@ public class DishRepository: IDishRepository
     {
         _context.Dishes.Add(dish);
         _context.SaveChanges();
+        
         return dish;
     }
 
@@ -42,8 +50,9 @@ public class DishRepository: IDishRepository
 
     public Dish UpdateDish(Dish dish)
     {
-        _context.Dishes.Update(dish);
+        var dishs = _context.Dishes.Update(dish);
         _context.SaveChanges();
+        
         return dish;
     }
 }

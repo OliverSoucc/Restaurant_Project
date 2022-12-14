@@ -5,9 +5,9 @@ using Domain;
 
 public interface IIngredientService
 {
-    public Ingredient CreateNewIngredient(GetIngredientDto getIngredientDto);
-    public List<Ingredient> GetAllIngredients();
-    public Ingredient GetIngredient(int id);
-    public Ingredient UpdateIngredient(PutIngredientDto dto);
-    public Ingredient DeleteIngredient(int id);
+    public GetIngredientDto CreateNewIngredient(GetIngredientDto getIngredientDto);
+    public List<GetIngredientDto> GetAllIngredients();
+    public GetIngredientDto GetIngredient(int id);
+    public GetIngredientDto UpdateIngredient(PutIngredientDto dto);
+    public GetIngredientDto DeleteIngredient(int id);
 }   

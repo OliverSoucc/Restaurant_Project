@@ -19,28 +19,28 @@ public class ReservationService: IReservationService
         _mapper = mapper;
     }
     
-    public ICollection<Reservation> GetReservations()
+    public ICollection<GetReservationDto> GetReservations()
     {
-        return _repository.GetReservations();
+        return _mapper.Map<ICollection<GetReservationDto>>(_repository.GetReservations());
     }
 
-    public Reservation GetReservation(int id)
+    public GetReservationDto GetReservation(int id)
     {
-        return _repository.GetReservation(id);
+        return _mapper.Map<GetReservationDto>(_repository.GetReservation(id));
     }
 
-    public Reservation CreateReservation(ReservationDTO reservationDto)
+    public GetReservationDto CreateReservation(ReservationDTO reservationDto)
     {
-        return _repository.CreateReservation(_mapper.Map<Reservation>(reservationDto));
+        return _mapper.Map<GetReservationDto>(_repository.CreateReservation(_mapper.Map<Reservation>(reservationDto)));
     }
 
-    public Reservation UpdateReservation(PutReservationDto reservationDto)
+    public GetReservationDto UpdateReservation(PutReservationDto reservationDto)
     {
-        return _repository.UpdateReservation(_mapper.Map<Reservation>(reservationDto));
+        return _mapper.Map<GetReservationDto>(_repository.UpdateReservation(_mapper.Map<Reservation>(reservationDto)));
     }
 
-    public Reservation DeleteReservation(int id)
+    public GetReservationDto DeleteReservation(int id)
     {
-        return _repository.DeleteReservation(id);
+        return _mapper.Map<GetReservationDto>(_repository.DeleteReservation(id));
     }
 }

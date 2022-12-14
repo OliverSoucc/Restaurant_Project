@@ -6,9 +6,9 @@ namespace Application.Interfaces.Services;
 
 public interface IReservationTableService
 {
-    public ICollection<ReservationTable> GetReservationTables();
-    public ReservationTable GetReservationTable(int id);
-    public ReservationTable CreateReservationTable(ReservationTableDTO dto);
-    public ReservationTable UpdateReservationTable(PutReservationTableDto dto);
-    public ReservationTable DeleteReservationTable(int id);
+    public ICollection<GetReservationTableDto> GetReservationTables();
+    public GetReservationTableDto GetReservationTable(int id);
+    public GetReservationTableDto CreateReservationTable(ReservationTableDTO dto);
+    public GetReservationTableDto UpdateReservationTable(PutReservationTableDto dto);
+    public GetReservationTableDto DeleteReservationTable(int id);
 }

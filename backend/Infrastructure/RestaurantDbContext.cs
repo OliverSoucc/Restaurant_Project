@@ -1,20 +1,24 @@
 using Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Repositories;
 
 public class RestaurantDbContext: DbContext
 {
+
+    private readonly IConfiguration _configuration;
     
-    public RestaurantDbContext(DbContextOptions options): base(options)
+    public RestaurantDbContext(DbContextOptions options, IConfiguration configuration): base(options)
     {
-        
+        _configuration = configuration;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseNpgsql("Host=localhost;Database=restaurant;Username=jannahalka;Password=admin");
+        // "Host=localhost;Database=restaurant;Username=jannahalka;Password=admin"
+        optionsBuilder.UseNpgsql(_configuration.GetConnectionString("webApi"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

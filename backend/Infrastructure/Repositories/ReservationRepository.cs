@@ -20,7 +20,9 @@ public class ReservationRepository: IReservationRepository
 
     public Reservation GetReservation(int id)
     {
-        var result = _context.Reservations.Find(id);
+        var result = _context.Reservations
+            .Include(r => r.ReservationTable)
+            .FirstOrDefault();
         if (result == null) throw new ArgumentException("Reservation with provided Id was not found");
         return result;
     }

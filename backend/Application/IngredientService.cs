@@ -22,7 +22,7 @@ public class IngredientService: IIngredientService
     
     }
     
-    public Ingredient CreateNewIngredient(GetIngredientDto getIngredientDto)
+    public GetIngredientDto CreateNewIngredient(GetIngredientDto getIngredientDto)
     {
         var validation = _validator.Validate(getIngredientDto);
         if (!validation.IsValid)
@@ -30,27 +30,28 @@ public class IngredientService: IIngredientService
             throw new ValidationException(validation.ToString());
         }
 
-        return _repository.CreateNewIngredient(_mapper.Map<Ingredient>(getIngredientDto));
+        return _mapper.Map<GetIngredientDto>(_repository.CreateNewIngredient(_mapper.Map<Ingredient>(getIngredientDto)));
 
     }
 
-    public List<Ingredient> GetAllIngredients()
+    public List<GetIngredientDto> GetAllIngredients()
     {
-        return _repository.GetAllIngredients();
+        var ingredients = _repository.GetAllIngredients();
+        return _mapper.Map<List<GetIngredientDto>>(ingredients);
     }
 
-    public Ingredient GetIngredient(int id)
+    public GetIngredientDto GetIngredient(int id)
     {
-        return _repository.GetIngredient(id);
+        return _mapper.Map<GetIngredientDto>(_repository.GetIngredient(id));
     }
 
-    public Ingredient UpdateIngredient(PutIngredientDto dto)
+    public GetIngredientDto UpdateIngredient(PutIngredientDto dto)
     {
-        return _repository.UpdateIngredient(_mapper.Map<Ingredient>(dto));
+        return _mapper.Map<GetIngredientDto>(_repository.UpdateIngredient(_mapper.Map<Ingredient>(dto)));
     }
 
-    public Ingredient DeleteIngredient(int id)
+    public GetIngredientDto DeleteIngredient(int id)
     {
-        return _repository.DeleteIngredient(id);
+        return _mapper.Map<GetIngredientDto>(_repository.DeleteIngredient(id));
     }
 }
