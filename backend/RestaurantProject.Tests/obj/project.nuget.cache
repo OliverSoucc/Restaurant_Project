@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/gibwfJcI6/NLbXr8f/iTaVaX57YrELQmAVFEWFqvazVhVWE/ZN8L45rETLnQOuvJRaZcu28Wb0OppWoPoXAQw==",
+  "dgSpecHash": "IxqG6w+2VoFjEXyLL1GoxyWvBAGT60fAl/X869QhC2JmzF+SdtRv0uPj/37Y3aIo0c2/rtKoLzTsVsfraB/EEw==",
   "success": true,
   "projectFilePath": "/Users/jannahalka/Desktop/Restaurant_Project/backend/RestaurantProject.Tests/RestaurantProject.Tests.csproj",
   "expectedPackageFiles": [
@@ -14,9 +14,10 @@
     "/Users/jannahalka/.nuget/packages/microsoft.aspnetcore.openapi/7.0.0/microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
     "/Users/jannahalka/.nuget/packages/microsoft.codecoverage/17.3.2/microsoft.codecoverage.17.3.2.nupkg.sha512",
     "/Users/jannahalka/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
-    "/Users/jannahalka/.nuget/packages/microsoft.entityframeworkcore/7.0.0/microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
-    "/Users/jannahalka/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.0/microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",
-    "/Users/jannahalka/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.0/microsoft.entityframeworkcore.analyzers.7.0.0.nupkg.sha512",
+    "/Users/jannahalka/.nuget/packages/microsoft.entityframeworkcore/7.0.1/microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
+    "/Users/jannahalka/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.1/microsoft.entityframeworkcore.abstractions.7.0.1.nupkg.sha512",
+    "/Users/jannahalka/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.1/microsoft.entityframeworkcore.analyzers.7.0.1.nupkg.sha512",
+    "/Users/jannahalka/.nuget/packages/microsoft.entityframeworkcore.inmemory/7.0.1/microsoft.entityframeworkcore.inmemory.7.0.1.nupkg.sha512",
     "/Users/jannahalka/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.0/microsoft.entityframeworkcore.relational.7.0.0.nupkg.sha512",
     "/Users/jannahalka/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/jannahalka/.nuget/packages/microsoft.extensions.caching.abstractions/7.0.0/microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",

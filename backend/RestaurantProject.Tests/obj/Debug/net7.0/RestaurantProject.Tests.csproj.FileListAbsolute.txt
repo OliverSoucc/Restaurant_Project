@@ -129,3 +129,4 @@
 /Users/jannahalka/Desktop/Restaurant_Project/backend/RestaurantProject.Tests/bin/Debug/net7.0/Application.pdb
 /Users/jannahalka/Desktop/Restaurant_Project/backend/RestaurantProject.Tests/bin/Debug/net7.0/Domain.pdb
 /Users/jannahalka/Desktop/Restaurant_Project/backend/RestaurantProject.Tests/bin/Debug/net7.0/Infrastructure.pdb
+/Users/jannahalka/Desktop/Restaurant_Project/backend/RestaurantProject.Tests/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.InMemory.dll

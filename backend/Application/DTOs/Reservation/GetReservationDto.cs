@@ -7,6 +7,6 @@ public class GetReservationDto
     public string FirstName { get; set; } = String.Empty;
     public string LastName { get; set; } = String.Empty;
     public string Email { get; set; } = String.Empty;
-    public DateTime Date { get; set; }
+    public string Date { get; set; }
     public ReservationTableDTO ReservationTable { get; set; }
 }
