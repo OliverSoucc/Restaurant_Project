@@ -11,10 +11,10 @@ public class IngredientService: IIngredientService
 {
     private readonly IIngredientRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IValidator<GetIngredientDto> _validator;
+    private readonly IValidator<PostIngredientDto> _validator;
     
 
-    public IngredientService(IIngredientRepository repository, IMapper mapper, IValidator<GetIngredientDto> validator)
+    public IngredientService(IIngredientRepository repository, IMapper mapper, IValidator<PostIngredientDto> validator)
     {
         _repository = repository;
         _mapper = mapper;
@@ -22,15 +22,15 @@ public class IngredientService: IIngredientService
     
     }
     
-    public GetIngredientDto CreateNewIngredient(GetIngredientDto getIngredientDto)
+    public GetIngredientDto CreateNewIngredient(PostIngredientDto postIngredientDto)
     {
-        var validation = _validator.Validate(getIngredientDto);
+        var validation = _validator.Validate(postIngredientDto);
         if (!validation.IsValid)
         {
             throw new ValidationException(validation.ToString());
         }
 
-        return _mapper.Map<GetIngredientDto>(_repository.CreateNewIngredient(_mapper.Map<Ingredient>(getIngredientDto)));
+        return _mapper.Map<GetIngredientDto>(_repository.CreateNewIngredient(_mapper.Map<Ingredient>(postIngredientDto)));
 
     }
 
