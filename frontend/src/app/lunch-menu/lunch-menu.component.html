@@ -12,6 +12,53 @@
           <li>{{ingredient}}</li>
         </div>
       </ul>
+      <div [ngClass]="item.homePage ? 'hidden' : ''">
+        <div class="flex gap-[20px] mt-[25px]">
+          <button class="px-[8px] py-[3px] border-2 border-blue-400" (click)="openForm()">
+            <div *ngIf="isOpen; else notOpen">Close Edit</div>
+            <ng-template #notOpen>Edit</ng-template>
+          </button>
+          <button class="px-[8px] py-[3px] border-2 border-red-400">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div *ngIf="isOpen">
+  <div class="w-[560px] mx-auto mb-[80px]">
+    <div class="flex gap-[30px]">
+      <mat-form-field appearance="fill" class="w-[250px]">
+        <mat-label>Price</mat-label>
+        <input matInput placeholder="{{item.price}}">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-[250px]">
+        <mat-label>Select Day In Week</mat-label>
+        <mat-select placeholder="{{item.dayInWeek}}">
+          <mat-option value="Monday">Monday</mat-option>
+          <mat-option value="Tuesday">Tuesday</mat-option>
+          <mat-option value="Wednesday">Wednesday</mat-option>
+          <mat-option value="Thursday">Thursday</mat-option>
+          <mat-option value="Friday">Friday</mat-option>
+          <mat-option value="Saturday">Saturday</mat-option>
+          <mat-option value="Sunday">Sunday</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="fill" class="w-[530px]">
+      <mat-label>Select Ingredients</mat-label>
+      <mat-select [formControl]="toppings" multiple>
+        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-[530px]">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="{{item.description}}" rows="5"></textarea>
+    </mat-form-field>
+    <div class="flex justify-center">
+      <button class="px-[8px] py-[3px] border-2 border-blue-400">Edit Lunch menu</button>
     </div>
   </div>
 </div>

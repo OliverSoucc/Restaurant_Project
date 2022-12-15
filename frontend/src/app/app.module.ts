@@ -20,6 +20,7 @@ import { LunchMenuComponent } from './lunch-menu/lunch-menu.component';
 import {RouterModule, Routes} from "@angular/router";
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 
 //routing
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     BulletPointComponent,
     LunchMenuComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
