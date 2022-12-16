@@ -9,10 +9,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@master
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v2
-        with: 
-          dotnet-version: 7.0.0
       - name: Go to backend directory
         run: cd .\backend\
       - name: Restore dependencies
