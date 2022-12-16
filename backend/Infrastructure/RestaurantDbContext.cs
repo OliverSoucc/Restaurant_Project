@@ -31,6 +31,10 @@ public class RestaurantDbContext: DbContext
             .Property(d => d.Id)
             .ValueGeneratedOnAdd();
         
+        modelBuilder.Entity<Reservation>()
+            .HasOne(r => r.ReservationTable)
+            .WithOne(rt => rt.Reservation);
+        
         base.OnModelCreating(modelBuilder);
     }
 

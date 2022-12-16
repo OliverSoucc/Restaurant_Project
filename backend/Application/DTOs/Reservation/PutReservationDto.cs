@@ -7,5 +7,5 @@ public class PutReservationDto
     public string LastName { get; set; }
     public string Email { get; set; }
     public string Date { get; set; }
-    public int TableId { get; set; }
+    public int ReservationTableId { get; set; }
 }   
