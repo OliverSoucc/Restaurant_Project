@@ -17,7 +17,7 @@ public class DishIngredientController: ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Dish> AddDishIngredient(PostDishIngredientDto dto)
+    public ActionResult AddDishIngredient(PostDishIngredientDto dto)
     {
         return Ok(_service.AddDishIngredient(dto));
     }

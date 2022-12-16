@@ -13,28 +13,23 @@ namespace API.Controllers;
 public class IngredientsController: ControllerBase
 {
     private readonly IIngredientService _service;
-    private readonly IngredientValidator _validator;
-    
-    public IngredientsController(IIngredientService service, IngredientValidator validator)
+
+    public IngredientsController(IIngredientService service)
     {
-        _validator = validator;
         _service = service;
     }
     
     [HttpGet]
-    public ActionResult<List<Ingredient>> GetAllIngredients()
+    public ActionResult GetAllIngredients()
     {
         return Ok(_service.GetAllIngredients());
     }
 
     [HttpPost]
-    public ActionResult<Ingredient> CreateNewIngredient([FromBody] GetIngredientDto dto)
+    public ActionResult CreateNewIngredient([FromBody] PostIngredientDto dto)
     {
         try
         {
-            var validation = _validator.Validate(dto);
-            if (!validation.IsValid) throw new ValidationException(validation.ToString());
-
             var result = _service.CreateNewIngredient(dto);
             return Created("ingredients/" + result.Id, result);
         }
@@ -50,7 +45,7 @@ public class IngredientsController: ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<Ingredient> GetIngredient([FromRoute]int id)
+    public ActionResult GetIngredient([FromRoute]int id)
     {
         try
         {
@@ -68,7 +63,7 @@ public class IngredientsController: ControllerBase
     }
 
     [HttpPut]
-    public ActionResult<Ingredient> UpdateIngredient([FromBody] PutIngredientDto dto)
+    public ActionResult UpdateIngredient([FromBody] PutIngredientDto dto)
     {
         try
         {
@@ -83,7 +78,7 @@ public class IngredientsController: ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    public ActionResult<Ingredient> DeleteIngredient([FromRoute] int id)
+    public ActionResult DeleteIngredient([FromRoute] int id)
     {
         try
         {

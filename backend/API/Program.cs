@@ -28,6 +28,7 @@ var mapper = new MapperConfiguration(configure =>
     configure.CreateMap<GetIngredientDto, Ingredient>();
     configure.CreateMap<PostDishIngredientDto, DishIngredient>();
     configure.CreateMap<Ingredient, GetIngredientDto>();
+    configure.CreateMap<PostIngredientDto, Ingredient>();
     configure.CreateMap<Dish, GetDishDto>()
         .ForMember(dto => dto.Ingredients, d => d.MapFrom(d => d.Ingredients.Select(di => di.Ingredient)));
     configure.CreateMap<PutReservationDto, Reservation>();

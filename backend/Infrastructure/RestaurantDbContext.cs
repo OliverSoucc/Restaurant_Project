@@ -7,18 +7,18 @@ namespace Infrastructure.Repositories;
 public class RestaurantDbContext: DbContext
 {
 
-    private readonly IConfiguration _configuration;
-    
-    public RestaurantDbContext(DbContextOptions options, IConfiguration configuration): base(options)
+    public RestaurantDbContext(DbContextOptions options): base(options)
     {
-        _configuration = configuration;
+        
     }
-
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        // "Host=localhost;Database=restaurant;Username=jannahalka;Password=admin"
-        optionsBuilder.UseNpgsql(_configuration.GetConnectionString("webApi"));
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseNpgsql("Host=localhost;Database=restaurant;Username=jannahalka;Password=admin");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,6 +30,10 @@ public class RestaurantDbContext: DbContext
         modelBuilder.Entity<Dish>()
             .Property(d => d.Id)
             .ValueGeneratedOnAdd();
+        
+        modelBuilder.Entity<Reservation>()
+            .HasOne(r => r.ReservationTable)
+            .WithOne(rt => rt.Reservation);
         
         base.OnModelCreating(modelBuilder);
     }

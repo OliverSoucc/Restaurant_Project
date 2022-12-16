@@ -18,7 +18,7 @@ public class ReservationsController: ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<ICollection<Reservation>> GetReservations()
+    public ActionResult GetReservations()
     {
         try
         {
@@ -32,11 +32,11 @@ public class ReservationsController: ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public ActionResult<GetReservationDto> GetReservation([FromRoute] int id)
+    public ActionResult GetReservation([FromRoute] int id)
     {
         try
         {
-            return _service.GetReservation(id);
+            return Ok(_service.GetReservation(id));
         }
         catch (Exception e)
         {
@@ -45,7 +45,7 @@ public class ReservationsController: ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Reservation> CreateReservation([FromBody] ReservationDTO dto)
+    public ActionResult CreateReservation([FromBody] ReservationDTO dto)
     {
         try
         {
@@ -59,7 +59,7 @@ public class ReservationsController: ControllerBase
     }
 
     [HttpPut]
-    public ActionResult<Reservation> UpdateReservation([FromBody] PutReservationDto dto)
+    public ActionResult UpdateReservation([FromBody] PutReservationDto dto)
     {
         try
         {
@@ -74,7 +74,7 @@ public class ReservationsController: ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    public ActionResult<Reservation> DeleteReservation([FromRoute] int id)
+    public ActionResult DeleteReservation([FromRoute] int id)
     {
         try
         {
