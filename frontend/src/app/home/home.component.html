@@ -24,9 +24,12 @@
   </div>
 </section>
 <section class="mb-[110px]">
-  <div *ngFor="let lunchMenu of lunchMenus">
-    <app-lunch-menu [item]="lunchMenu"></app-lunch-menu>
+  <div *ngFor="let dish of allDishes">
+    <app-lunch-menu [item]="dish"></app-lunch-menu>
   </div>
+  <!--  <div *ngFor="let dish of allDishes">-->
+  <!--    {{dish | json}}-->
+  <!--  </div>-->
 </section>
 <section class="mb-[150px]">
   <h5 class="text-center text-[#e67e22] font-bold text-[16px]">Meals</h5>
@@ -52,38 +55,7 @@
       <p class="pl-[50px] w-[600px] text-[21px] pb-[70px]">Healthy, tasty and hassle-free meals are waiting for you.
         Start eating well today. And the first meal is on us! </p>
       <div class="pl-[50px]">
-        <form action="">
-          <div class="flex gap-[35px]">
-            <mat-form-field appearance="fill" color="warn" class="w-[250px]">
-              <mat-label>First Name</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="fill" color="warn" class="w-[250px]">
-              <mat-label>Last Name</mat-label>
-              <input matInput>
-            </mat-form-field>
-          </div>
-          <div class="flex gap-[35px]">
-            <mat-form-field appearance="fill" color="warn" class="w-[250px]">
-              <mat-label>Email</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="fill" color="warn">
-              <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="picker">
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <mat-form-field appearance="fill" color="warn" class="w-[535px]">
-            <mat-label>Select Table</mat-label>
-            <mat-select>
-              <mat-option value="one"><div class="flex gap-[25px]"><span><span class="font-bold text-[14px]">Table n.:</span> 4</span>|<span><span class="font-bold text-[14px]">Num. of Seats</span>: 3</span>|<span><span class="font-bold text-[14px]">Location</span>: Window</span></div></mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button class="h-[55px] px-[55px] bg-white bg-orange-800 rounded-[10px] text-white font-bold">Make reservation</button>
-        </form>
+        <app-create-reservation-form></app-create-reservation-form>
       </div>
     </div>
     <img src="assets/images/formLady.jpg" alt="eating lady" class="w-[480px] h-[580px]">
