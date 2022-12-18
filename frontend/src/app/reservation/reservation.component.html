@@ -1,59 +1,79 @@
-<div
-  class="mb-[20px] py-[10px] px-[7px] border border-2 border-black flex gap-[50px] justify-center items-center mx-[50px]">
-  <span><span class="font-bold">ID:</span> {{item.id}}</span>
-  <span><span class="font-bold">First Name:</span> {{item.firstName}}</span>
-  <span><span class="font-bold">Last Name:</span> {{item.lastName}}</span>
-  <span><span class="font-bold">Date:</span> {{item.date}}</span>
-  <span><span class="font-bold">Email:</span> {{item.email}}</span>
-  <span><span class="font-bold">Table Num.:</span> {{item.tableNumber}}</span>
-  <span><span class="font-bold">Number of Seats:</span> {{item.tableNumOfSeats}}</span>
-  <span><span class="font-bold">Table Location:</span> {{item.tableLocation}}</span>
-  <button class="px-[8px] py-[3px] border-2 border-blue-400" (click)="openForm()">
-    <div *ngIf="isOpen; else notOpen">Close Edit</div>
-    <ng-template #notOpen>Edit</ng-template>
-  </button>
-  <button class="px-[8px] py-[3px] border-2 border-red-400">Delete</button>
-</div>
+<div [ngClass]="isDeleted ? 'hidden' : ''">
+  <div
+    class="mb-[20px] py-[10px] px-[7px] border border-2 border-black flex gap-[35px] justify-center items-center mx-[50px]">
+    <span><span class="font-bold">ID:</span> {{item.id}}</span>
+    <span><span class="font-bold">First Name:</span> {{item.firstName}}</span>
+    <span><span class="font-bold">Last Name:</span> {{item.lastName}}</span>
+    <span><span class="font-bold">Date:</span> {{item.date}}</span>
+    <span><span class="font-bold">Email:</span> {{item.email}}</span>
+    <span><span class="font-bold">Table Num.:</span> {{item.reservationTable.number}}</span>
+    <span><span class="font-bold">Number of Seats:</span> {{item.reservationTable.numberOfSeats}}</span>
+    <span><span class="font-bold">Table Location:</span> {{item.reservationTable.location}}</span>
+    <button class="px-[8px] py-[3px] border-2 border-blue-400" (click)="openForm()">
+      <div *ngIf="isOpen; else notOpen">Close Edit</div>
+      <ng-template #notOpen>Edit</ng-template>
+    </button>
+    <button class="px-[8px] py-[3px] border-2 border-red-400" (click)="deleteReservation(item.id)">Delete</button>
+  </div>
 
 
-<div *ngIf="isOpen">
-  <div class="flex justify-center mb-[40px]">
-    <div>
-      <div class="flex gap-[30px]">
-        <mat-form-field appearance="fill" class="w-[250px]">
-          <mat-label>First Name</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="w-[250px]">
-          <mat-label>Last Name</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-      <div class="flex gap-[30px]">
-        <mat-form-field appearance="fill" class="w-[250px]">
-          <mat-label>Email</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <mat-form-field appearance="fill" class="w-[535px]">
-        <mat-label>Select Table</mat-label>
-        <mat-select>
-          <mat-option value="one">
-            <div class="flex gap-[25px]"><span><span class="font-bold text-[14px]">Table n.:</span> 4</span>|<span><span
-              class="font-bold text-[14px]">Num. of Seats</span>: 3</span>|<span><span class="font-bold text-[14px]">Location</span>: Window</span>
+  <div *ngIf="isOpen">
+    <div class="flex justify-center mb-[40px]">
+      <div>
+        <div class="flex gap-[30px]">
+          <mat-form-field appearance="fill" class="w-[250px]">
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)]="firstName" placeholder="{{item.firstName}}">
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="w-[250px]">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="lastName" placeholder="{{item.lastName}}">
+          </mat-form-field>
+        </div>
+        <div class="flex gap-[35px]">
+          <mat-form-field appearance="fill" class="w-[250px]">
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="email" placeholder="{{item.email}}">
+          </mat-form-field>
+          <mat-form-field appearance="fill" >
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill" class="w-[535px]">
+          <mat-label>Select Table</mat-label>
+          <mat-select [(ngModel)]="table">
+            <div *ngFor="let table of allReservationTables">
+              <mat-option value="{{table.id}}">
+                <div class="flex gap-[30px]">
+                  <div *ngFor="let tb of table | keyvalue">
+                    <div *ngIf="tb.key !== 'id'">
+                      <div class="flex gap-[5px]">
+                          <span class="font-bold text-[14px]">
+                            <div *ngIf="tb.key === 'number'">Table n.: </div>
+                            <div *ngIf="tb.key === 'numberOfSeats'">Num. of Seats: </div>
+                            <div *ngIf="tb.key === 'location'">Location: </div>
+                          </span>
+                        {{tb.value}},
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-option>
             </div>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div class="flex justify-center">
-        <button class="px-[8px] py-[3px] border-2 border-blue-400">Edit Reservation</button>
+          </mat-select>
+        </mat-form-field>
+        <div class="flex justify-center">
+          <button class="px-[8px] py-[3px] border-2 border-blue-400" (click)="editReservation()">Edit Reservation</button>
+        </div>
+        <div class="flex justify-center">
+          <div *ngIf="messageUpdateReservation !== undefined">
+            {{messageUpdateReservation}}
+          </div>
+        </div>
       </div>
     </div>
   </div>

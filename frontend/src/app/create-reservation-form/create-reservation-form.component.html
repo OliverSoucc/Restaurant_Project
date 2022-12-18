@@ -1,0 +1,57 @@
+<div class="flex gap-[35px]">
+  <mat-form-field appearance="fill" color="warn" class="w-[250px]">
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="firstName">
+  </mat-form-field>
+  <mat-form-field appearance="fill" color="warn" class="w-[250px]">
+    <mat-label>Last Name</mat-label>
+    <input matInput [(ngModel)]="lastName">
+  </mat-form-field>
+</div>
+<div class="flex gap-[35px]">
+  <mat-form-field appearance="fill" color="warn" class="w-[250px]">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="email">
+  </mat-form-field>
+  <mat-form-field appearance="fill" color="warn">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="date">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+<mat-form-field appearance="fill" color="warn" class="w-[535px]">
+  <mat-label>Select Table</mat-label>
+  <mat-select [(ngModel)]="table">
+    <div *ngFor="let table of allReservationTables">
+      <mat-option value="{{table.id}}">
+        <div class="flex gap-[30px]">
+          <div *ngFor="let tb of table | keyvalue">
+            <div *ngIf="tb.key !== 'id'">
+              <div class="flex gap-[5px]">
+                          <span class="font-bold text-[14px]">
+                            <div *ngIf="tb.key === 'number'">Table n.: </div>
+                            <div *ngIf="tb.key === 'numberOfSeats'">Num. of Seats: </div>
+                            <div *ngIf="tb.key === 'location'">Location: </div>
+                          </span>
+                {{tb.value}},
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-option>
+    </div>
+  </mat-select>
+</mat-form-field>
+<button [ngClass]="item.homePage ? 'h-[55px] px-[55px] bg-white bg-orange-800 rounded-[10px] text-white font-bold' : 'px-[8px] py-[3px] border-2 border-green-400 ml-[200px]'"
+        (click)="createReservation()"
+        [disabled]="firstName === '' || lastName === '' || email === '' || table === 0">
+  Make reservation
+</button>
+<div class="flex justify-center">
+  <div *ngIf="submissionFormFeedback !== undefined">
+    {{submissionFormFeedback}}
+  </div>
+</div>
+
