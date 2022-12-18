@@ -17,7 +17,7 @@ public class RestaurantDbContext: DbContext
         base.OnConfiguring(optionsBuilder);
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=restaurant;Username=jannahalka;Password=admin");
+            optionsBuilder.UseNpgsql("Host=restaurantdbserver.postgres.database.azure.com;Database=postgres;Username=gastanovec;Password=Pelonidas123");
         }
     }
 
