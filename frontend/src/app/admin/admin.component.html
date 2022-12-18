@@ -4,59 +4,21 @@
   </h1>
   <div class="w-full h-[2px] bg-black"></div>
 </div>
-<div *ngFor="let reservation of reservations">
+<div *ngFor="let reservation of allReservations">
   <app-reservation [item]="reservation"></app-reservation>
 </div>
 <h3 class="text-[28px] text-center mb-[25px]">Create reservation</h3>
 <div class="w-[560px] mx-auto mb-[80px]">
-  <div class="flex gap-[30px]">
-    <mat-form-field appearance="fill" class="w-[250px]">
-      <mat-label>First Name</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="w-[250px]">
-      <mat-label>Last Name</mat-label>
-      <input matInput>
-    </mat-form-field>
-  </div>
-  <div class="flex gap-[30px]">
-    <mat-form-field appearance="fill" class="w-[250px]">
-      <mat-label>Email</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <mat-form-field appearance="fill" class="w-[535px]">
-    <mat-label>Select Table</mat-label>
-    <mat-select>
-      <mat-option value="one">
-        <div class="flex gap-[25px]"><span><span class="font-bold text-[14px]">Table n.:</span> 4</span>|<span><span
-          class="font-bold text-[14px]">Num. of Seats</span>: 3</span>|<span><span class="font-bold text-[14px]">Location</span>: Window</span>
-        </div>
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <div class="flex justify-center">
-    <button class="px-[8px] py-[3px] border-2 border-green-400">Create reservation</button>
-  </div>
+  <app-create-reservation-form [item]="{homePage:false}"></app-create-reservation-form>
 </div>
-
-
-
 <div class="flex gap-[10px] items-center ml-[50px] my-[25px]">
   <h1 class="text-[32px] uppercase w-[250px]">
     Lunch menu
   </h1>
   <div class="w-full h-[2px] bg-black"></div>
 </div>
-<div *ngFor="let lunchMenu of lunchMenus">
-  <app-lunch-menu [item]="lunchMenu"></app-lunch-menu>
+<div *ngFor="let dish of allDishes">
+  <app-lunch-menu [item]="dish"></app-lunch-menu>
 </div>
 <div class="flex justify-center items-center mb-[100px]">
   <div>
@@ -64,11 +26,11 @@
     <div class="flex gap-[30px]">
       <mat-form-field appearance="fill" class="w-[250px]">
         <mat-label>Price</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="dishPrice">
       </mat-form-field>
       <mat-form-field appearance="fill" class="w-[250px]">
         <mat-label>Select Day In Week</mat-label>
-        <mat-select>
+        <mat-select [(ngModel)]="dishWeekDay">
           <mat-option value="Monday">Monday</mat-option>
           <mat-option value="Tuesday">Tuesday</mat-option>
           <mat-option value="Wednesday">Wednesday</mat-option>
@@ -79,18 +41,29 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <mat-form-field appearance="fill" class="w-[530px]">
-      <mat-label>Select Ingredients</mat-label>
-      <mat-select [formControl]="toppings" multiple>
-        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="flex flex-col">
+      <mat-form-field appearance="fill" class="w-[530px]">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="dishName">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-[530px]">
+        <mat-label>Select Ingredients</mat-label>
+        <mat-select multiple [(ngModel)]="dishIngredients">
+          <mat-option *ngFor="let ingredient of allIngredients" value="{{ingredient.id}}">{{ingredient.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <div class="flex flex-col">
       <mat-form-field appearance="fill" class="w-[530px]">
         <mat-label>Description</mat-label>
-        <textarea matInput rows="5"></textarea>
+        <textarea matInput rows="5" [(ngModel)]="dishDescription"></textarea>
       </mat-form-field>
-      <button class="px-[8px] py-[3px] border-2 border-green-400">Create dish</button>
+      <button class="px-[8px] py-[3px] border-2 border-green-400" (click)="createDish()">Create dish</button>
+      <div class="flex justify-center">
+        <div *ngIf="messageCreateDish !== undefined">
+          {{messageCreateDish}}
+        </div>
+      </div>
     </div>
   </div>
   <div class="w-[200px] h-[2px] rotate-90 bg-gray-300"></div>
@@ -99,13 +72,18 @@
     <div class="flex flex-col">
       <mat-form-field appearance="fill" class="w-[250px]">
         <mat-label>Ingredient</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="ingredientName">
       </mat-form-field>
       <mat-form-field appearance="fill" class="w-[250px]">
-        <mat-label>Amount (grams)</mat-label>
-        <input matInput>
+        <mat-label>Amount</mat-label>
+        <input matInput [(ngModel)]="ingredientAmount">
       </mat-form-field>
-      <button class="px-[8px] py-[3px] border-2 border-green-400">Create ingredient</button>
+      <button class="px-[8px] py-[3px] border-2 border-green-400" (click)="createIngredient()">Create ingredient</button>
+      <div class="flex justify-center">
+        <div *ngIf="messageCreateIngredient !== undefined">
+          {{messageCreateIngredient}}
+        </div>
+      </div>
     </div>
   </div>
 </div>

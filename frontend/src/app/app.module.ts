@@ -21,6 +21,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { CreateReservationFormComponent } from './create-reservation-form/create-reservation-form.component';
 
 
 //routing
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     LunchMenuComponent,
     HomeComponent,
     AdminComponent,
-    ReservationComponent
+    ReservationComponent,
+    CreateReservationFormComponent
   ],
   imports: [
     BrowserModule,
