@@ -1,0 +1,13 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches: [ main ]
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd frontend
+      - run: npm install
+      - run: npm run serve
