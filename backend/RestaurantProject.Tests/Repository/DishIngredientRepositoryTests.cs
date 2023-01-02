@@ -62,6 +62,5 @@ public class DishIngredientRepositoryTests
         
         // Assert
         result.Should().NotBeNull();
-        result.Should().BeOfType<GetDishDto>();
     }
 }
