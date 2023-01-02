@@ -24,4 +24,4 @@ jobs:
       - name: Build
         run: cd backend && dotnet build --no-restore
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: cd backend && dotnet test --no-build --verbosity normal
