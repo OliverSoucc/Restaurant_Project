@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 export const customAxios = axios.create({
-  baseURL: 'https://restaurant-project.azurewebsites.net/api',
+  baseURL: 'https://restaurantdotnetapp.azurewebsites.net/api',
 })
 @Injectable({
   providedIn: 'root'
