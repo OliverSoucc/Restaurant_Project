@@ -17,7 +17,7 @@ public class RestaurantDbContext: DbContext
         IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json", false, true)
-            // .AddJsonFile("appsettings.Development.json", true, true)
+            .AddJsonFile("appsettings.Development.json", true, true)
             .Build();
         
         optionsBuilder.UseNpgsql(configuration.GetConnectionString("WebApi"), builder =>
