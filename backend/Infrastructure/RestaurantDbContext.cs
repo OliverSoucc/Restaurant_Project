@@ -6,19 +6,21 @@ namespace Infrastructure.Repositories;
 
 public class RestaurantDbContext: DbContext
 {
-
     public RestaurantDbContext(DbContextOptions options): base(options)
     {
-        
     }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseNpgsql("Host=restaurantdbserver.postgres.database.azure.com;Database=postgres;Username=gastanovec;Password=Pelonidas123");
-        }
+        
+        IConfigurationRoot configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json", false, true)
+            .AddJsonFile("appsettings.Development.json", true, true)
+            .Build();
+        
+        optionsBuilder.UseNpgsql(configuration.GetConnectionString("WebApi"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
