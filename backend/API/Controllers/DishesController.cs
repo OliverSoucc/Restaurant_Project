@@ -13,9 +13,11 @@ public class DishesController : ControllerBase
 {
     private IDishService _dishService;
     private PostDishValidator _postDishValidator;
+    private PutDishValidator _putDishValidator;
 
-    public DishesController(IDishService dishService, PostDishValidator postDishValidator)
+    public DishesController(IDishService dishService, PostDishValidator postDishValidator, PutDishValidator putDishValidator)
     {
+        _putDishValidator = putDishValidator;
         _dishService = dishService;
         _postDishValidator = postDishValidator;
     }
@@ -55,8 +57,14 @@ public class DishesController : ControllerBase
     {
         try
         {
-            var result = _dishService.CreateNewDish(dto);
-            return Created("dishes/" + result.Id, result);
+            var validation = _postDishValidator.Validate(dto);
+            if (validation.IsValid)
+            {
+                var result = _dishService.CreateNewDish(dto);
+                return Created("dishes/" + result.Id, result);   
+            }
+            return BadRequest(validation.ToString());
+
         }
         catch (ValidationException e)
         {
@@ -73,8 +81,14 @@ public class DishesController : ControllerBase
     {
         try
         {
-            var result = _dishService.UpdateDish(dto);
-            return Ok(result);
+            var validation = _putDishValidator.Validate(dto);
+            if (validation.IsValid)
+            {
+                var result = _dishService.UpdateDish(dto);
+                return Ok(result);   
+            }
+
+            return BadRequest(validation.ToString());
         }
         catch (Exception e)
         {

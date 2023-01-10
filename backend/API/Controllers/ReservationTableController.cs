@@ -1,6 +1,7 @@
 using Application.DTOs;
 using Application.DTOs.ReservationTable;
 using Application.Interfaces.Services;
+using Application.Validators.ReservationTableValidators;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers;
@@ -10,8 +11,12 @@ namespace API.Controllers;
 public class ReservationTableController: ControllerBase
 {
     private readonly IReservationTableService _service;
-    public ReservationTableController(IReservationTableService service)
+    private readonly PostReservationTableValidator _postReservationTableValidator;
+    private readonly PutReservationTableValidator _putReservationTableValidator;
+    public ReservationTableController(IReservationTableService service, PostReservationTableValidator postReservationTableValidator, PutReservationTableValidator putReservationTableValidator)
     {
+        _postReservationTableValidator = postReservationTableValidator;
+        _putReservationTableValidator = putReservationTableValidator;
         _service = service;
     }
 
@@ -49,8 +54,14 @@ public class ReservationTableController: ControllerBase
     {
         try
         {
-            var result = _service.CreateReservationTable(dto);
-            return Created("reservationTables/" + result.Id, result);
+            var validation = _postReservationTableValidator.Validate(dto);
+            if (validation.IsValid)
+            {
+                var result = _service.CreateReservationTable(dto);
+                return Created("reservationTables/" + result.Id, result);   
+            }
+
+            return BadRequest(validation.ToString());
         }
         catch (Exception e)
         {
@@ -63,8 +74,14 @@ public class ReservationTableController: ControllerBase
     {
         try
         {
-            var result = _service.UpdateReservationTable(dto);
-            return Ok(result);
+            var validation = _putReservationTableValidator.Validate(dto);
+            if (validation.IsValid)
+            {
+                var result = _service.UpdateReservationTable(dto);
+                return Ok(result);   
+            }
+
+            return BadRequest(validation.ToString());
         }
         catch (Exception e)
         {

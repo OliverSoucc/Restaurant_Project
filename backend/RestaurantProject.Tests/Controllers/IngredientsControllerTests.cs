@@ -1,5 +1,7 @@
 using API.Controllers;
+using Application.DTOs;
 using Application.DTOs.Ingredient;
+using Application.DTOs.IngredientValidators;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Domain;
@@ -14,12 +16,16 @@ public class IngredientsControllerTests
     private readonly IngredientsController _controller;
     private readonly IMapper _mapper;
     private readonly IIngredientService _service;
+    private readonly IngredientValidator _postValidator;
+    private readonly PutIngredientValidator _putIngredientValidator;
     
     public IngredientsControllerTests()
     {
         _mapper = A.Fake<IMapper>();
         _service = A.Fake<IIngredientService>();
-        _controller = new IngredientsController(_service);
+        _postValidator = A.Fake<IngredientValidator>();
+        _putIngredientValidator = A.Fake<PutIngredientValidator>();
+        _controller = new IngredientsController(_service, _putIngredientValidator, _postValidator);
     }
     
     [Fact]

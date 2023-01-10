@@ -1,8 +1,7 @@
-using Application.Interfaces.Repositories;
 using Application.DTOs;
 using Application.DTOs.Ingredient;
+using Application.DTOs.IngredientValidators;
 using Application.Interfaces.Services;
-using Domain;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,10 +12,14 @@ namespace API.Controllers;
 public class IngredientsController: ControllerBase
 {
     private readonly IIngredientService _service;
+    private readonly PutIngredientValidator _putIngredientValidator;
+    private readonly IngredientValidator _validator;
 
-    public IngredientsController(IIngredientService service)
+    public IngredientsController(IIngredientService service, PutIngredientValidator putIngredientValidator, IngredientValidator validator)
     {
+        _putIngredientValidator = putIngredientValidator;
         _service = service;
+        _validator = validator;
     }
     
     [HttpGet]
@@ -30,8 +33,14 @@ public class IngredientsController: ControllerBase
     {
         try
         {
-            var result = _service.CreateNewIngredient(dto);
-            return Created("ingredients/" + result.Id, result);
+            var validation = _validator.Validate(dto);
+            if (validation.IsValid)
+            {
+                var result = _service.CreateNewIngredient(dto);
+                return Created("ingredients/" + result.Id, result);   
+            }
+
+            return BadRequest(validation.ToString());
         }
         catch (ValidationException e)
         {
@@ -67,8 +76,14 @@ public class IngredientsController: ControllerBase
     {
         try
         {
-            var result = _service.UpdateIngredient(dto);
-            return Ok(result);
+            var validation = _putIngredientValidator.Validate(dto);
+            if (validation.IsValid)
+            {
+                var result = _service.UpdateIngredient(dto);
+                return Ok(result);   
+            }
+
+            return BadRequest(validation.ToString());
         }
         catch (Exception e)
         {

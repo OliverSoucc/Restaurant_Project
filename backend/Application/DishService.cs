@@ -4,8 +4,6 @@ using Application.DTOs.Dish;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Domain;
-using FluentValidation;
-using ValidationException = FluentValidation.ValidationException;
 
 namespace Application;
 
@@ -13,12 +11,10 @@ public class DishService: IDishService
 {
     private readonly IDishRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IValidator<GetDishDto> _postValidator;
-    public DishService(IDishRepository repository, IMapper mapper, IValidator<GetDishDto> postValidator)
+    public DishService(IDishRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
-        _postValidator = postValidator;
     }
     public List<GetDishDto> GetAllDishes()
     {
