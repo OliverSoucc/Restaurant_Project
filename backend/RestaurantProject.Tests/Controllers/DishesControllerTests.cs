@@ -7,9 +7,7 @@ using AutoMapper;
 using Domain;
 using FakeItEasy;
 using FluentAssertions;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-
 namespace RestaurantProject.Tests.Controllers;
 
 public class DishesControllerTests
@@ -21,10 +19,10 @@ public class DishesControllerTests
     {
         var repository = A.Fake<IDishRepository>();
         _mapper = A.Fake<IMapper>();
-        var validator = A.Fake<IValidator<GetDishDto>>();
         var postDishValidator = A.Fake<PostDishValidator>();
-        var dishService = new DishService(repository, _mapper, validator);
-        _dishesController = new DishesController(dishService, postDishValidator);
+        var putDishValidator = A.Fake<PutDishValidator>();
+        var dishService = new DishService(repository, _mapper);
+        _dishesController = new DishesController(dishService, postDishValidator, putDishValidator);
     }
 
     [Fact]

@@ -2,6 +2,7 @@ using API.Controllers;
 using Application.DTOs;
 using Application.DTOs.Reservation;
 using Application.Interfaces.Services;
+using Application.Validators.ReservationValidators;
 using AutoMapper;
 using Domain;
 using FakeItEasy;
@@ -15,10 +16,14 @@ public class ReservationControllerTests
     private readonly ReservationsController _controller;
     private readonly IReservationService _service;
     private readonly IMapper _mapper;
+    private readonly ReservationValidator _validator;
+    private readonly PutReservationValidator _putReservationValidator;
     public ReservationControllerTests()
     {
         _service = A.Fake<IReservationService>();
-        _controller = new ReservationsController(_service);
+        _validator = A.Fake<ReservationValidator>();
+        _putReservationValidator = A.Fake<PutReservationValidator>();
+        _controller = new ReservationsController(_service, _validator, _putReservationValidator);
         _mapper = A.Fake<IMapper>();
     }
     [Fact]
